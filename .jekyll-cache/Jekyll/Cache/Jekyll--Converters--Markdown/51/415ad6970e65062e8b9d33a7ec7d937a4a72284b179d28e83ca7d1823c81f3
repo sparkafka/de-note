@@ -1,0 +1,163 @@
+I"�<<h2 id="들어가며">들어가며</h2>
+
+<p><br /></p>
+
+<p>Coursera 수업을 들으면서 Scala의 인자 전달법에 대해 모르던 내용이 나와서 정리한다.</p>
+
+<p><a href="https://www.coursera.org/learn/scala2-functional-programming">Coursera의 Functional Programming Principles in Scala</a>의 내용 중 일부를 정리하였다.</p>
+
+<p><br /><br /></p>
+
+<h2 id="call-by-value와-call-by-name">Call-by-value와 Call-by-name</h2>
+
+<p>  Scala에서는 함수를 호출할 때 사용하는 인자 전달법으로 Call-by-value, Call-by-name 2가지를 지원한다.</p>
+
+<ul>
+  <li>Call-by-value</li>
+</ul>
+
+<p>  Call-by-value는 일반적인 프로그래밍 언어들에서 기본적으로 지원하는 인자 전달법으로, 인자 값을 복사하여 함수에 전달하고, 인자로 표현식이 들어온 경우 표현식을 먼저 계산하고 함수에 전달한다.</p>
+
+<p>  Scala에서는 다음과 같이 Call-by-value 인자를 만든다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">square</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Double</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="k">def</span> <span class="nf">sumOfSquares</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Double</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Double</span><span class="o">)</span> <span class="k">=</span> <span class="nf">square</span><span class="o">(</span><span class="n">x</span><span class="o">)</span> <span class="o">+</span> <span class="nf">square</span><span class="o">(</span><span class="n">y</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>  Call-by-value 형식의 Evaluation은 다음과 같다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">sumOfSquares</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span>
+<span class="nf">sumOfSquares</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+<span class="nf">square</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">+</span> <span class="nf">square</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+<span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="nf">square</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+<span class="mi">9</span> <span class="o">+</span> <span class="nf">square</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+<span class="mi">9</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="mi">9</span> <span class="o">+</span> <span class="mi">16</span>
+<span class="mi">25</span>
+</code></pre></div></div>
+
+<p>  그런데 이런 Call-by-value가 문제가 있는 경우가 존재한다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">loop</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">loop</span>
+<span class="k">def</span> <span class="nf">chooseX</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span>
+
+<span class="nf">chooseX</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="nf">loop</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
+</code></pre></div></div>
+<p>  위 코드에서 chooseX(x, y)는 항상 x를 반환하지만, chosse(3, loop(2))에서 인자들을 먼저 reduce 하는데, loop가 무한루프이기 때문에 에러가 발생한다. 이런 상황은 Call-by-name을 활용하면 해결할 수 있다.</p>
+
+<ul>
+  <li>Call-by-name</li>
+</ul>
+
+<p>  Call-by-name은 함수의 인자들을 reduce 하기 전에 함수를 적용한다. 표현식이 들어올 경우 표현식 통째로 함수에 인자로 넣는다.</p>
+
+<p>  Scala에서는 다음과 같이 =&gt;를 사용하여 Call-by-name 인자를 만든다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">square</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Double</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="k">def</span> <span class="nf">sumOfSquares</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Double</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Double</span><span class="o">)</span> <span class="k">=</span> 
+                                <span class="nf">square</span><span class="o">(</span><span class="n">x</span><span class="o">)</span> <span class="o">+</span> <span class="nf">square</span><span class="o">(</span><span class="n">y</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>  Call-by-name 형식의 Evaluation은 다음과 같다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">sumOfSquares</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span>
+<span class="nf">square</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">+</span> <span class="nf">square</span><span class="o">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span>
+<span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="nf">square</span><span class="o">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span>
+<span class="mi">9</span> <span class="o">+</span> <span class="nf">square</span><span class="o">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span>
+<span class="mi">9</span> <span class="o">+</span> <span class="o">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span>
+<span class="mi">9</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="o">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span>
+<span class="mi">9</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="mi">9</span> <span class="o">+</span> <span class="mi">16</span>
+<span class="mi">25</span>
+</code></pre></div></div>
+
+<p>  위 Call-by-value의 예에서 Call-by-name을 사용했을 경우는 다음과 같다.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">loop</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">loop</span>
+<span class="k">def</span> <span class="nf">chooseX</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span>
+
+<span class="nf">chooseX</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="nf">loop</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
+<span class="mi">3</span>
+</code></pre></div></div>
+<p>  위와 같이 함수에 인자를 넘겨줄 때 Call-by-name 방식을 사용하면 정상적으로 값이 반환된다.</p>
+
+<ul>
+  <li>상황에 따른 단계 비교</li>
+</ul>
+
+<p>  다음 상황에서 Call-by-value와 Call-by-name을 사용했을 때 어디가 더 빠를까?</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="c1">// 1</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="c1">// 2</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+<span class="c1">// 3</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+<span class="c1">// 4</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<h4 id="call-by-value">Call-by-value</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="mi">4</span>
+
+<span class="c1">// 2</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+<span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+<span class="mi">49</span>
+
+<span class="c1">// 3</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+<span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+<span class="mi">49</span>
+
+<span class="c1">// 4</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+<span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+<span class="mi">49</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<h4 id="call-by-name">Call-by-name</h4>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="mi">4</span>
+
+<span class="c1">// 2</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+<span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span>
+<span class="mi">7</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span>
+<span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+<span class="mi">49</span>
+
+<span class="c1">// 3</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+<span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+<span class="mi">49</span>
+
+<span class="c1">// 4</span>
+<span class="nf">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+<span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span>
+<span class="mi">7</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span>
+<span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+<span class="mi">49</span>
+</code></pre></div></div>
+<p>  항상 Call-by-value가 빠른게 아니고, Call-by-name이 더 빠른 경우도 있다.
+<br /><br /></p>
+
+<h2 id="마치며">마치며</h2>
+
+<p><br /></p>
+
+<p>  Scala에서 생소한 개념인 Call-by-name에 대해 알아보았다. 아직까지는 Call-by-name을 어떻게 써야 할지 감이 잘 안 온다. 더 깊게 공부하다 보면 써먹을 곳이 있겠지?</p>
+:ET
