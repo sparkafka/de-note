@@ -41,9 +41,9 @@ $ bin/elasticsearch
 &nbsp; 필요는 없는데, 나는 환경변수를 설정하였다.
 ```
 $ vi ~/.bashrc
-# ELASTICSEARCH_HOME
-export ELASTICSEARCH_HOME=/opt/elasticsearch/elasticsearch-8.2.0
-export PATH=$PATH:$ELASTICSEARCH_HOME/bin
+# ES_HOME
+export ES_HOME=/opt/elasticsearch/elasticsearch-8.2.0
+export PATH=$PATH:$ES_HOME/bin
 
 $ source ~/.bashrc
 ```
