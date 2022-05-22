@@ -18,6 +18,7 @@ last_modified_at: 2022-05-22
 ## 꼬리 재귀
 
 - Scala에서의 block
+
 &nbsp; 꼬리 재귀를 알아보기 전에 먼저 Scala에서 block이 의미하는 것을 먼저 알아보자. Scala에서는 블록의 마지막 요소가 그 블록의 값을 표현하는 표현식이다. 이 것을 이용하여, Scala에서 함수를 이런 식으로 return을 쓰지 않고 쉽게 표현할 수 있다.
 
 ```scala
