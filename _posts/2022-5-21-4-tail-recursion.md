@@ -42,6 +42,7 @@ def factorialRec(n: Int): Int =
   if (n==0) 1
   else n * factorialRec(n-1)
 
+factorialRec(4)
 ```
 ```
 val res1: Int = 24
