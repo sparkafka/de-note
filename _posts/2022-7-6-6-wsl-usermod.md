@@ -45,8 +45,8 @@ wsl -u <임시 유저>
 
 ```bash
 // ubuntu
-sudo usermod -l <원래 유저 이름> <변경할 유저 이름>
-sudo usermod -d <변경할 유저 이름> -m <변경할 유저 이름>
+sudo usermod -l <변경할 유저 이름> <원래 유저 이름> // 유저 이름 변경
+sudo usermod -d <변경할 유저 이름> -m <변경할 유저 이름> // 홈 디렉토리 변경
 ```
 
 <br/>
@@ -65,8 +65,8 @@ wsl
 
 ```bash
 // ubuntu
-sudo deluser <임시 유저>
-sudo rm -r /home/<임시 유저>
+sudo deluser <임시 유저> // 유저 삭제
+sudo rm -r /home/<임시 유저> // 홈 디렉토리 삭제
 ```
 &nbsp; 이것으로 유저 이름 변경이 완료되었다.
 
