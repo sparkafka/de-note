@@ -3,40 +3,43 @@ layout: post
 title: "[Python]Datapane을 이용한 보고서 작성"
 excerpt: Python Datapane 라이브러리를 사용해 HTML 보고서를 작성하자
 categories:
-    - etc
-last_modified_at: 2022-07-06
+    - Python
+last_modified_at: 2022-09-21
 published: false
 ---
 
 ## 들어가며
 
-&nbsp; wsl 계정 이름을 바꿀 일이 생겼는데, wsl에서 ubuntu 유저 이름을 변경하는 법을 정확히 서술한 곳을 찾기 어려워서 약간 애먹었다. 나중에 다시 변경할 일이 있을 지도 모르니 정리해 보았다.
+&nbsp; 회사에서 Python을 활용한 보고서 작성 프로그램을 만들어야 했다. 파이썬의 여러가지 라이브러리르 비교한 결과, Datapane이라는 라이브러리를 쓰기로 결정하였다.
+이번 포스트에서는 Datapane 라이브러리를 테스트하고, 사용법을 정리해 보도록 하겠다.
 
 <br/><br/>
 
-## 1. 우분투에서 유저 생성
+## 1. Datapane이란
+&nbsp; [Datapane](https://datapane.com/)은 interactive한 report를 쉽게 작성할 수 있는 파이썬 라이브러리이다.
 
-&nbsp; 유저 이름을 변경하기 위해 먼저 임시 유저를 만들어야 한다.
+![Datapane example](/images/7th/datapane_example1.jpeg)
 
-```bash
-// ubuntu
-sudo adduser <임시 유저> // 임시 유저 만들기
-sudo adduser <임시 유저> sudo // 임시 유저에 su 권한 주기
-```
+&nbsp; 위와 같이 chart 및 table 등을 조합하여 report html 파일을 작성할 수 있다.
 
 <br/>
 
-## 2. 임시 유저에 로그인 하기
+## 2. Datapane 설치
 
-&nbsp; 이제 wsl에서 원래 ubuntu 계정이 아닌, 임시 계정으로 로그인을 해야 한다.
+먼저 Datapane을 설치하자. pip를 이용해 쉽게 설치할 수 있다. 2022/09/21 현재 Datapane 최신 버전인 0.15.1에 약간 문제가 있어 0.14.0 버전을 설치하였다.
 
 ```bash
-// window powershell
-wsl --shutdown
-wsl -u <임시 유저>
+pip install datapane==0.14.0
 ```
 
-&nbsp; 이렇게 접속하면 임시 유저로 로그인이 되는 것을 확인할 수 있다.
+잘 설치됐는지 확인해보자.
+
+```python
+import datapane
+datapane.__version__
+
+'0.14.0'
+```
 
 <br/>
 

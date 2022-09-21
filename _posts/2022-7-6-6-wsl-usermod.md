@@ -27,7 +27,7 @@ sudo adduser <임시 유저> sudo // 임시 유저에 su 권한 주기
 
 ## 2. 임시 유저에 로그인 하기
 
-&nbsp; 이제 wsl에서 원래 ubuntu 계정이 아닌, 임시 계정으로 로그인을 해야 한다.
+&nbsp; 이제 wsl에서 원래 ubuntu 계정이 아닌, 임시 계정으로 로그인을 해야 한다. Window에서 새로 만든 계정으로 로그인하자.
 
 ```bash
 // window powershell
