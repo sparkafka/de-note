@@ -4,14 +4,14 @@ title: "[Python]Datapane을 이용한 보고서 작성"
 excerpt: Python Datapane 라이브러리를 사용해 HTML 보고서를 작성하자
 categories:
     - Python
-last_modified_at: 2022-09-21
+last_modified_at: 2022-09-22
 published: false
 ---
 
 ## 들어가며
 
-&nbsp; 회사에서 Python을 활용한 보고서 작성 프로그램을 만들어야 했다. 파이썬의 여러가지 라이브러리르 비교한 결과, Datapane이라는 라이브러리를 쓰기로 결정하였다.
-이번 포스트에서는 Datapane 라이브러리를 테스트하고, 사용법을 정리해 보도록 하겠다.
+&nbsp; 회사에서 Python을 활용한 보고서 작성 프로그램을 만들어야 했다. 파이썬의 여러가지 라이브러리를 비교한 결과, Datapane이라는 라이브러리를 쓰기로 결정하였다. 이런 작업을 하는 것을 처음이라 여기저기 알아봤는데, Datapane에 대해 소개해주는 곳이 많이 없었다. 그래서 Datapane을 소개하기 위해 글을 작성하였다.
+&nbsp; 이번 포스트에서는 Datapane 라이브러리를 테스트하고, 사용법을 정리해 보도록 하겠다.
 
 <br/><br/>
 
@@ -24,7 +24,7 @@ published: false
 
 <br/>
 
-## 2. Datapane 설치
+## 2. Datapane 설치 및 테스트
 
 먼저 Datapane을 설치하자. pip를 이용해 쉽게 설치할 수 있다. 2022/09/21 현재 Datapane 최신 버전인 0.15.1에 약간 문제가 있어 0.14.0 버전을 설치하였다.
 
@@ -41,19 +41,44 @@ datapane.__version__
 '0.14.0'
 ```
 
-<br/>
-
-## 3. 이름 변경하기
-
-&nbsp; 이제 원래 유저 이름을 변경하자.
+&nbsp; 기본적으로 Datapane에서는 기존 Object들을 Wrapper 클래스로 둘러싸고, 마지막에 Report 클래스로 요소들을 종합하는 형식으로 활용한다. 아래 예시는 간단한 텍스트를 포함한 Report를 작성하는 코드이다.
 
 ```bash
-// ubuntu
-sudo usermod -l <변경할 유저 이름> <원래 유저 이름> // 유저 이름 변경
-sudo usermod -d <변경할 유저 이름> -m <변경할 유저 이름> // 홈 디렉토리 변경
+import datapane as dp
+
+text = dp.Text("Hello, World!")
+report = dp.Report(text)
+report.save("hello.html")
 ```
+위 코드를 실행하면 ```hello.html``` 이라는 파일이 생성된다.
+![Datapane example](/images/7th/datapane_hello.jpeg)
 
 <br/>
+
+## 3. Datapane Block
+
+&nbsp; Datapane에서는 Python Object들을 감싸는 Wrapper 클래스를 Block이라고 부른다. Report는 여러 Block들의 조합으로 구성할 수 있다. Block들의 종류는 많기도 하고, 계속 추가되고 있기 때문에 자세한 내용은 [Datapane Docs](https://docs.datapane.com/catalogues/blocks/)를 확인하고, 여기에서는 간단하게 몇몇 개만 살펴보자.
+
+- Text Block
+&nbsp; 위 예시에서 사용한 것이 Text Block이다. 단순 String 만이 아닌, md 파일 형식과 같은 Multi-line Text도 Block으로 만들 수 있다.
+
+```python
+import datapane as dp
+
+md = """
+안녕하세요. 반갑습니다. *강조*
+
+# 제목
+
+- 요소
+```python
+print("Hello, World!")
+```
+"""
+
+report = dp.Report(md)
+report.save("multi-line.html")
+```
 
 ## 4. 임시 유저 삭제하기
 
