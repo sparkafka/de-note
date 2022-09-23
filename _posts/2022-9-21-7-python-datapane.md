@@ -154,10 +154,31 @@ report.save("jinja2-test.html")
 ```
 ![Jinja2 Test](/images/7th/jinja2-test.jpeg)
 
-위와 같이 HTML 파일에 변수 내용이 들어가고, 그 내용을 HTML Block이 생성된 것을 확인할 수 있다.
-
+&nbsp; 위와 같이 HTML 파일에 변수 내용이 들어가고, 그 HTML 파일을 바탕으로 HTML Block이 생성된 것을 확인할 수 있다.
 
 <br/>
+
+- Table Block
+
+&nbsp; Datapane에서 Pandas Dataframe Block을 만들기 쉽다. 그냥 Table Block에 Dataframe을 넣어주면 된다.
+
+```python
+import datapane as dp
+import pandas as pd
+
+df = pd.DataFrame(
+                {
+                    "col1": [1,2,3],
+                    "col2": [4,5,6]
+                })
+
+df_block = dp.Table(df)
+report = dp.Report(df_block)
+report.save("table-test.html")
+```
+![Table Test](/images/7th/table-test.jpeg)
+
+&nbsp; 위와 같이 Table Block을 생성했을 때 Table이 잘 출력되는 것을 확인할 수 있다.
 
 
 ## 4. 임시 유저 삭제하기
