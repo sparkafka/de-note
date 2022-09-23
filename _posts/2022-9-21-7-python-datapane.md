@@ -57,7 +57,7 @@ report.save("hello.html")
 
 ## 3. Datapane Block
 
-&nbsp; Datapane에서는 Python Object들을 감싸는 Wrapper 클래스를 Block이라고 부른다. Report는 여러 Block들의 조합으로 구성할 수 있다. Block들의 종류는 많기도 하고, 계속 추가되고 있기 때문에 자세한 내용은 [Datapane Docs](https://docs.datapane.com/catalogues/blocks/)를 확인하고, 여기에서는 간단하게 몇몇 개만 살펴보자.
+&nbsp; Datapane에서는 Python Object들을 감싸는 Wrapper 클래스를 Block이라고 부른다. Report는 여러 Block들의 조합으로 구성할 수 있다. Block들의 종류는 많기도 하고, 계속 추가되고 있기 때문에 자세한 내용은 [Datapane Docs](https://docs.datapane.com/catalogues/blocks/)를 확인하고, 여기에서는 프로젝트를 할때 사용한 블록 종류들만 간단하게 몇몇 개만 살펴보도록 하겠다.
 
 - Text Block
 &nbsp; 위 예시에서 사용한 것이 Text Block이다. 단순 String 만이 아닌, md 파일 형식과 같은 Multi-line Text도 Block으로 만들 수 있다.
@@ -74,9 +74,91 @@ md = """
 
 """
 
-report = dp.Report(md)
+report = dp.Report(dp.Text(md))
 report.save("multi-line.html")
 ```
+![Datapane example](/images/7th/datapane_multi_line.jpeg)
+
+위와 같이 md 파일 형식을 쓸 수 있다.
+
+- HTML Block
+&nbsp; 그러나 Text 만으로는 상세한 Styling을 하기 어렵다. 그렇기 때문에 Datapane에서는 HTML 파일 형식의 Block을 지원한다.
+
+```python
+import datapane as dp
+
+html_text="""
+    <html>
+        <!-- Styling elements of the page -->
+        <style type='text/css'>
+            #container {
+                background: #000000;
+                padding: 2em;
+                margin-top: -25px;
+            }
+            h1 {
+                color:#ffabf0;
+                text-align:left;
+                font-size:30px;
+                font-family:verdana;
+            }
+        </style>
+        <div id="container">
+            <h1> Hello, World! </h1>
+        </div>
+    </html>
+"""
+
+report = dp.Report(dp.HTML(html_text))
+report.save("html-test.html")
+```
+![HTML Test](/images/7th/html-test.jpeg)
+
+&nbsp; 위와 같이 배경, 정렬, 폰트, 글자색 등을 자유롭게 설정할 수 있다. 
+<br/>
+&nbsp; 그러나 저것만 사용하기에는 뭔가 아쉽다. Plain HTML 파일만 사용하면 HTML 안의 내용을 바꾸기 어렵다. HTML 파일 안의 내용을 바꾸기 위해 jinja2 라이브러리를 사용해보자. jinja2는 HTML 파일에 변수들을 쉽게 집어넣을 수 있는 라이브러리이다. 변수 내용을 집어넣기 위해 변수명을 {{}}로 둘러 쌓는다.
+
+```python
+import datapane as dp
+from jinja2 import Environment
+
+html_text="""
+    <html>
+        <!-- Styling elements of the page -->
+        <style type='text/css'>
+            #container {
+                background: #000000;
+                padding: 2em;
+                margin-top: -25px;
+            }
+            h1 {
+                color:#ffabf0;
+                text-align:left;
+                font-size:30px;
+                font-family:verdana;
+            }
+        </style>
+        <div id="container">
+            <h1> {{input_text}} </h1>
+        </div>
+    </html>
+"""
+
+env = Environment()
+text = "jinja2 test"
+template = env.from_string(html_text)
+html = template.render(input_text=text)
+res = dp.HTML(html)
+report = dp.Report(res)
+report.save("jinja2-test.html")
+```
+![Jinja2 Test](/images/7th/jinja2-test.jpeg)
+
+위와 같이 HTML 파일에 변수 내용이 들어가고, 그 내용을 HTML Block이 생성된 것을 확인할 수 있다.
+
+
+<br/>
+
 
 ## 4. 임시 유저 삭제하기
 
