@@ -71,9 +71,7 @@ md = """
 # 제목
 
 - 요소
-```python
-print("Hello, World!")
-```
+
 """
 
 report = dp.Report(md)
