@@ -236,7 +236,9 @@ report.save("plot-test2.html")
 &nbsp; Report 전체 너비와 Layout을 설정하는 법을 알아보자.
 
 - Report 전체 크기
+
 &nbsp; Report 너비를 설정하기 위해서는 dp.Report의 save 메서드에 formatting 인자에 ReportFormatting 클래스를 넣어주면 된다. 너비의 기본값은 MEDIUM이다.
+
 ```python
 import datapane as dp
 import pandas as pd
@@ -266,6 +268,7 @@ report.save("narrow-test.html", formatting=dp.ReportFormatting(
 &nbsp; 위와 같이 Report의 너비가 조절이 되는 것을 확인할 수 있다. 이외에도 다른 여러 옵션이 있으니 자세한 내용은 [Datapane Styling](https://docs.datapane.com/tutorials/styling/)을 확인하자.
 
 - Report Layout
+
 
 &nbsp; 이제 Block들을 배치하는 법을 알아보자. Block들을 배치할 때는 dp.Group 클래스 안에 배치할 Block들을 넣는다.
 
