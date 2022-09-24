@@ -293,5 +293,6 @@ report.save("group-test.html")
 &nbsp; 기본적인 Datapane 라이브러리의 사용법을 알아보았다. 사실 아주 기초적인 내용이라, 더 예쁜 Report 작성을 위해서는 Datapane Docs에서 자세한 내용을 보는 것을 추천한다. 더 신기한 내용들이 많다.
 
 - Reference
-https://datapane.com/
+
+https://datapane.com/<br/>
 https://altair-viz.github.io/
