@@ -10,8 +10,7 @@ published: True
 
 ## 들어가며
 
-&nbsp; 회사에서 Python을 활용한 보고서 작성 프로그램을 만들어야 했다. 파이썬의 여러가지 라이브러리를 비교한 결과, Datapane이라는 라이브러리를 쓰기로 결정하였다. 이런 작업을 하는 것을 처음이라 여기저기 알아봤는데, Datapane에 대해 소개해주는 곳이 많이 없었다. 그래서 Datapane을 소개하기 위해 글을 작성하였다.
-&nbsp; 이번 포스트에서는 Datapane 라이브러리를 테스트하고, 사용법을 정리해 보도록 하겠다.
+&nbsp; 회사에서 Python을 활용한 보고서 작성 프로그램을 만들어야 했다. 파이썬의 여러가지 라이브러리를 비교한 결과, Datapane이라는 라이브러리를 쓰기로 결정하였다. 이런 작업을 하는 것을 처음이라 여기저기 알아봤는데, Datapane에 대해 소개해주는 곳이 많이 없었다. 그래서 Datapane을 소개하기 위해 글을 작성하였다. 이번 포스트에서는 Datapane 라이브러리를 테스트하고, 사용법을 정리해 보도록 하겠다.
 
 <br/><br/>
 
@@ -297,5 +296,5 @@ report.save("group-test.html")
 
 - Reference
 
-https://datapane.com/<br/>
-https://altair-viz.github.io/
+[https://datapane.com/]<br/>
+[https://altair-viz.github.io/]
