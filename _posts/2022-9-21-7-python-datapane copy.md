@@ -5,7 +5,7 @@ excerpt: Python Datapane 라이브러리를 사용해 HTML 보고서를 작성�
 categories:
     - Python
 last_modified_at: 2022-09-25
-published: True
+published: False
 ---
 
 ## 들어가며
