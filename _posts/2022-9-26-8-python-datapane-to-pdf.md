@@ -1,23 +1,25 @@
 ---
 layout: post
-title: "[Python]Datapane을 이용한 보고서 작성"
-excerpt: Python Datapane 라이브러리를 사용해 HTML 보고서를 작성하자
+title: "[Python]Datapane으로 작성한 Report의 pdf 변환"
+excerpt: Datapane으로 작성한 Report를 pdf로 변환해보자.
 categories:
     - Python
-last_modified_at: 2022-09-25
+last_modified_at: 2022-09-26
 published: False
 ---
 
 ## 들어가며
 
-&nbsp; 회사에서 Python을 활용한 보고서 작성 프로그램을 만들어야 했다. 파이썬의 여러가지 라이브러리를 비교한 결과, Datapane이라는 라이브러리를 쓰기로 결정하였다. 이런 작업을 하는 것을 처음이라 여기저기 알아봤는데, Datapane에 대해 소개해주는 곳이 많이 없었다. 그래서 Datapane을 소개하기 위해 글을 작성하였다. 이번 포스트에서는 Datapane 라이브러리를 테스트하고, 사용법을 정리해 보도록 하겠다.
+&nbsp; [지난 포스트](https://sparkafka.github.io/7-python-datapane/)에서 Python Datapane 라이브러리로 HTML 형식의 Report를 작성해 보았다. 이제 작성한 Report HTML 파일을 pdf로 바꾸기 위해 기존에 존재하던 HTML to pdf 라이브러리를 사용했는데, 변환이 안되는 것이었다! 그래서 나는 다른 방법을 찾아야 했다...
 
 <br/><br/>
 
-## 1. Datapane이란
-&nbsp; [Datapane](https://datapane.com/)은 interactive한 report를 쉽게 작성할 수 있는 파이썬 라이브러리이다.
+## 1. 기존의 HTML to pdf 라이브러리
+&nbsp; Python에서 사용할 수 있는 HTML to pdf 라이브러리를 대표적으로 wkhtmltopdf를 이용하는 라이브러리은 pdfkit과 weasyprint 라이브러리가 있다. 나는 먼저 pdfkit을 가지고 파일 변환을 해보았다. pdfkit을 사용하려면 먼저 wkhtmltopdf를 설치해야 한다.
 
-![Datapane example](/images/7th/datapane_example1.jpeg)
+![기존 html 파일](/images/8th/table-test.jpeg)
+
+```
 
 &nbsp; 위와 같이 chart 및 table 등을 조합하여 report html 파일을 작성할 수 있다.
 
