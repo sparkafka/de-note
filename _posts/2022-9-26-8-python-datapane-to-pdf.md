@@ -33,7 +33,7 @@ pdfkit.from_file('table-test.html', 'table-test.pdf')
 
 ![report 코드 일부](/images/8th/report-code.jpg)
 
-&nbsp; 위 캡쳐본은 table-test.html 코드의 일부분이다. 간단한 report임에도 불구하고 ```<script>`` 태그가 상당히 길고 복잡한 것을 알 수 있다. 나도 잘 모르지만, 이런 복잡한 script 때문에 변환이 안 되는 것 아닐까?
+&nbsp; 위 캡쳐본은 table-test.html 코드의 일부분이다. 간단한 report임에도 불구하고 ```<script>``` 태그가 상당히 길고 복잡한 것을 알 수 있다. 나도 잘 모르지만, 이런 복잡한 script 때문에 변환이 안 되는 것 아닐까라는 생각을 하였다.
 
 <br/>
 
