@@ -117,7 +117,7 @@ report.save("html-test.html")
 <br/>
 &nbsp; 그러나 저것만 사용하기에는 뭔가 아쉽다. Plain HTML 파일만 사용하면 HTML 안의 내용을 바꾸기 어렵다. HTML 파일 안의 내용을 바꾸기 위해 jinja2 라이브러리를 사용해보자. jinja2는 HTML 파일에 변수들을 쉽게 집어넣을 수 있는 라이브러리이다. 변수 내용을 집어넣기 위해 변수명을 {{}}로 둘러 쌓는다.
 
-```
+```python
 import datapane as dp
 from jinja2 import Environment
 
@@ -138,7 +138,7 @@ html_text="""
             }
         </style>
         <div id="container">
-            <h1> {{ input_text }} </h1>
+            <h1> \{\{ input_text \}\} </h1>
         </div>
     </html>
 """
