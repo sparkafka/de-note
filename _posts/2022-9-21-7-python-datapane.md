@@ -138,7 +138,7 @@ html_text="""
             }
         </style>
         <div id="container">
-            <h1> {{ input_text }} </h1>
+            <h1> `{{ input_text }}` </h1>
         </div>
     </html>
 """
