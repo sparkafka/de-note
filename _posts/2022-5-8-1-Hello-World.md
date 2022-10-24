@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 블로그를 시작한 이유 및 운영 계획
+title: [etc]블로그를 시작한 이유 및 운영 계획
 excerpt: 일단 만들고 생각하자.
-last_modified_at: 2022-05-15
+last_modified_at: 2022-10-25
 ---
 
 ## 들어가며
