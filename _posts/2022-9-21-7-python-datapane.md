@@ -4,7 +4,7 @@ title: "[Python] Datapane을 이용한 보고서 작성"
 excerpt: Python Datapane 라이브러리를 사용해 HTML 보고서를 작성하자
 categories:
     - Python
-last_modified_at: 2022-09-25
+last_modified_at: 2022-10-25
 published: True
 ---
 
@@ -49,6 +49,12 @@ text = dp.Text("Hello, World!")
 report = dp.Report(text)
 report.save("hello.html")
 ```
+
+※ 2022/10/25 수정
+현재 Datapane 0.15 버전에서는 리포트 생성 시 ```dp.Report```가 아닌 ```dp.App```을 사용
+
+<br/>
+
 위 코드를 실행하면 ```hello.html``` 이라는 파일이 생성된다.
 ![Datapane example](/images/7th/datapane_hello.jpeg)
 
