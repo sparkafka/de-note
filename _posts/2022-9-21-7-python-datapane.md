@@ -65,6 +65,7 @@ report.save("hello.html")
 &nbsp; Datapane에서는 Python Object들을 감싸는 Wrapper 클래스를 Block이라고 부른다. Report는 여러 Block들의 조합으로 구성할 수 있다. 여기에서 프로젝트를 할 때 사용한 블록 종류들만 간단하게 몇몇 개만 살펴보도록 하겠다.
 
 - Text Block
+
 &nbsp; 위 예시에서 사용한 것이 Text Block이다. 단순 String 만이 아닌, md 파일 형식과 같은 Multi-line Text도 Block으로 만들 수 있다.
 
 ```python
@@ -87,6 +88,7 @@ report.save("multi-line.html")
 위와 같이 md 파일 형식을 쓸 수 있다.
 
 - HTML Block
+
 &nbsp; 그러나 Text 만으로는 상세한 Styling을 하기 어렵다. 그렇기 때문에 Datapane에서는 HTML 파일 형식의 Block을 지원한다.
 
 ```python
