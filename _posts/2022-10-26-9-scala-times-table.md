@@ -136,7 +136,7 @@ for (i <- 1 until 5)
 &nbsp; if 문을 같이 써서 조건 처리를 할 수 있다.
 
 ```scala
-for (i <- 1 to 10 if i%2==0)
+for (i <- 1 to 10 if i % 2 == 0)
   print(i)
 
 // 246810
@@ -171,7 +171,7 @@ for (x <- 1 to 3; y <- 1 to 3) {
 @main
 def hello() = {
   for (x <- 2 to 9; y <- 1 to 9) {
-    print(f"${x} * ${y} = ${ x * y }%2d ")
+    print(f"${x} * ${y} = ${x * y}%2d ")
     if (y == 9) println()
   }
 }
