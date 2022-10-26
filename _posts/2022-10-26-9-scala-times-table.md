@@ -142,7 +142,7 @@ for (i <- 1 to 10 if i%2==0)
 // 246810
 ```
 
-&nbsp; 다음과 같이 같은 괄호 안에 넣어 2중 for 문을 쉽게 구현할 수 있다.
+&nbsp; 다음과 같이 같은 괄호 안에 넣어 2중 for 문을 쉽게 구현할 수 있다. 뒤에 오는 iterator가 inner for 문 역할을 한다.
 
 ```scala
 for (x <- 1 to 3; y <- 1 to 3) {
@@ -165,14 +165,14 @@ for (x <- 1 to 3; y <- 1 to 3) {
 
 ## 3. 구구단 출력
 
-&nbsp; @main annotation을 통해 main 함수를 구현하고, 이중 for 문과 ```f``` Interpolator를 통해 문자열을 formatting 할 것이다.
+&nbsp; @main annotation을 통해 main 함수를 구현하고, 이중 for 문과 ```f``` Interpolator를 통해 문자열을 formatting 할 것이다. y가 9일 경우 줄바꿈을 해준다.
 
 ```scala
 @main
 def hello() = {
   for (x <- 2 to 9; y <- 1 to 9) {
-    print(f"${x} * ${y} = ${x*y}%2d ")
-    if (y==9) println()
+    print(f"${x} * ${y} = ${ x * y }%2d ")
+    if (y == 9) println()
   }
 }
 ```
