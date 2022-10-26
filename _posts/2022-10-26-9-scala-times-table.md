@@ -137,7 +137,7 @@ for (i <- 1 until 5)
 
 ```scala
 for (i <- 1 to 10 if i%2==0)
-	print(i)
+  print(i)
 
 // 246810
 ```
