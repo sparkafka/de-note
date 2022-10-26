@@ -170,10 +170,10 @@ for (x <- 1 to 3; y <- 1 to 3) {
 ```scala
 @main
 def hello() = {
-	for (x <- 2 to 9; y <- 1 to 9) {
-		print(f"${x} * ${y} = ${x*y}%2d ")
-		if (y==9) println()
-	}
+  for (x <- 2 to 9; y <- 1 to 9) {
+    print(f"${x} * ${y} = ${x*y}%2d ")
+    if (y==9) println()
+  }
 }
 ```
 
