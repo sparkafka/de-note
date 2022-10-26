@@ -19,7 +19,7 @@ published: True
 ## 1. Scala의 main 함수
 
 &nbsp; 기존에 Scala 2까지는 다음과 같이 main 함수를 선언해야 했다.
-```Scala
+```scala
 object HelloWorld {
   def main(args: Array[String]): Unit = {
     println("Hello, world!")
@@ -29,7 +29,7 @@ object HelloWorld {
 // Hello, World!
 ```
 &nbsp; 아니면 App trait을 상속받아 다음과 같이 표현해야 했다.
-```Scala
+```scala
 object HelloWorld extends App {
   println("Hello, world!")
 }
@@ -38,7 +38,7 @@ object HelloWorld extends App {
 ```
 
 &nbsp; Scala 3부터는 다음과 같이 @main annotation을 이용하여 간단히 main 함수를 표현할 수 있다.
-```Scala
+```scala
 @main
 def hello() = println("Hello, World")
 
@@ -46,7 +46,7 @@ def hello() = println("Hello, World")
 ```
 
 &nbsp; 다음과 같은 활용도 가능하다.
-```Scala
+```scala
 @main def hello: Unit =
   println(msg)
 
@@ -56,7 +56,7 @@ def msg = "Hello, World!"
 ```
 
 &nbsp; object 안에서도 @main annotation을 쓸 수 있다.
-```Scala
+```scala
 object HelloWorld {
   @main
   def hello() = println("Hello, world!")
@@ -77,7 +77,7 @@ object HelloWorld {
 
 &nbsp; ```s``` Interpolator를 String 앞에 추가하면 String에서 직접 변수를 사용할 수 있다. $와 {}를 사용하면 변수를 사용할 수 있다.
 
-```Scala
+```scala
 val a: Int = 10
 println(s"a = ${a}")
 
@@ -86,7 +86,7 @@ println(s"a = ${a}")
 
 &nbsp; {} 안에서 표현식도 사용 가능하다.
 
-```Scala
+```scala
 println(s"1 + 1 = ${1 + 1}")
 
 // 1 + 1 = 2
@@ -96,7 +96,7 @@ println(s"1 + 1 = ${1 + 1}")
 
 &nbsp; ```f``` Interpolator는 c언어의 printf와 같이, 변수를 formatting하여 쓸 수 있도록 만드는 interpolator이다. ${}뒤에 %를 붙이는 식으로, printf와 비슷하게 쓰면 된다.
 
-```Scala
+```scala
 val b = 12.3456
 println(f"b = ${b}%.2f")
 
@@ -107,7 +107,7 @@ println(f"b = ${b}%.2f")
 
 &nbsp; ```raw``` Interpolator는 ```s```와 비슷하지만, escape 문자를 동작시키지 않고 그대로 출력시킨다.
 
-```Scala
+```scala
 println("General: first\nsecond")
 println(raw"Raw: first\nsecond")
 
@@ -122,7 +122,7 @@ println(raw"Raw: first\nsecond")
 
 &nbsp; Scala에서 for 문은 보통 collection을 조회하는 데에 쓰인다. to, until 구문을 이용해 for 문을 쉽게 사용할 수 있다. to는 끝 포함, until은 끝 미포함이다.
 
-```Scala
+```scala
 for (i <- 1 to 5)
   print(i)
 println()
@@ -135,7 +135,7 @@ for (i <- 1 until 5)
 
 &nbsp; if 문을 같이 써서 조건 처리를 할 수 있다.
 
-```Scala
+```scala
 for (i <- 1 to 10 if i%2==0)
 	print(i)
 
@@ -144,7 +144,7 @@ for (i <- 1 to 10 if i%2==0)
 
 &nbsp; 다음과 같이 같은 괄호 안에 넣어 2중 for 문을 쉽게 구현할 수 있다.
 
-```Scala
+```scala
 for (x <- 1 to 3; y <- 1 to 3) {
   println((x,y))
 }
@@ -167,7 +167,7 @@ for (x <- 1 to 3; y <- 1 to 3) {
 
 &nbsp; @main annotation을 통해 main 함수를 구현하고, 이중 for 문과 ```f``` Interpolator를 통해 문자열을 formatting 할 것이다.
 
-```Scala
+```scala
 @main
 def hello() = {
 	for (x <- 2 to 9; y <- 1 to 9) {
