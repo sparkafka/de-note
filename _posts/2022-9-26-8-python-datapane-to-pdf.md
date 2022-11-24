@@ -5,7 +5,7 @@ excerpt: Datapane으로 작성한 Report를 pdf로 변환해보자.
 categories:
     - Python
 last_modified_at: 2022-09-29
-published: True
+published: False
 ---
 
 ## 들어가며
