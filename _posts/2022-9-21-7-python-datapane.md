@@ -2,8 +2,7 @@
 layout: post
 title: "[Python] Datapane을 이용한 보고서 작성"
 excerpt: Python Datapane 라이브러리를 사용해 HTML 보고서를 작성하자
-categories:
-    - Python
+categories: ['Python']
 last_modified_at: 2022-10-25
 published: True
 ---
