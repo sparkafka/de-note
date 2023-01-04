@@ -7,8 +7,6 @@ last_modified_at: 2023-01-04
 published: True
 ---
 
-## 2023/01/04 블로그 업데이트
-
 * 블로그 테마 변경
 
     _[Jekyll Now](https://github.com/barryclark/jekyll-now)에서 [lanyon](https://github.com/poole/lanyon)로 변경_
