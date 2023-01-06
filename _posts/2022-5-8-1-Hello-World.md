@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "[etc] 블로그를 시작한 이유 및 운영 계획"
+title: "블로그를 시작한 이유 및 운영 계획"
 excerpt: "일단 만들고 생각하자."
-categories: ['daily']
+categories: ['blog']
 last_modified_at: 2022-10-25
 ---
 
