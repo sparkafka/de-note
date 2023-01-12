@@ -3,7 +3,7 @@ layout: post
 title: "[Python] Datapane을 이용한 보고서 작성"
 excerpt: Python Datapane 라이브러리를 사용해 HTML 보고서를 작성하자
 categories: ['Python']
-last_modified_at: 2022-10-25
+last_modified_at: 2023-01-12
 published: True
 ---
 
@@ -301,7 +301,7 @@ report.save("group-test.html")
 
 &nbsp; 기본적인 Datapane 라이브러리의 사용법을 알아보았다. 사실 아주 기초적인 내용이라, 더 예쁜 Report 작성을 위해서는 Datapane Docs에서 자세한 내용을 보는 것을 추천한다. 더 신기한 내용들이 많다. 다음에는 Datapane으로 작성한 Report를 pdf로 변환하는 법을 쓸 예정이다.
 
-- Reference
+## Reference
 
-[https://datapane.com/](https://datapane.com/)<br/>
+[https://datapane.com/](https://datapane.com/)   
 [https://altair-viz.github.io/](https://altair-viz.github.io/)

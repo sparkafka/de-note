@@ -3,7 +3,7 @@ layout: post
 title: "[Python] Datapane으로 작성한 Report의 pdf 변환"
 excerpt: Datapane으로 작성한 Report를 pdf로 변환해보자.
 categories: ['Python']
-last_modified_at: 2022-11-30
+last_modified_at: 2023-01-12
 published: True
 ---
 
@@ -80,7 +80,7 @@ with open('table-img2pdf.pdf', 'wb') as file:
 
 &nbsp; 처음에 Report html 파일이 pdf 변환 라이브러리로 변환이 안 될때 많이 당황했는데, 이렇게 해결할 방법을 찾은게 천만다행이라고 생각했다. 그 덕분에 나름 많은 것을 알 수 있어서 나쁘지만은 않은 경험이었지만, Datapane 자체적으로 파일 변환 기능을 넣어줬으면 한다. 이 방법도 결국에는 꼼수에 가까운 방법이니... 빠른 기능 추가를 바란다.
 
-- Reference
+## Reference
 
 [https://datapane.com/](https://datapane.com/)<br/>
 [https://pypi.org/project/html2image/](https://pypi.org/project/html2image/)<br/>

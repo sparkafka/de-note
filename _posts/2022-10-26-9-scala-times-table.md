@@ -3,7 +3,7 @@ layout: post
 title: "[Scala] 구구단 출력하기"
 excerpt: Scala의 이중 for문과 String interpolation을 통해 구구단을 출력해보자
 categories: ['Scala']
-last_modified_at: 2022-10-26
+last_modified_at: 2023-01-12
 published: True
 ---
 
@@ -186,7 +186,7 @@ def hello() = {
 
 &nbsp; 오랜만에 Scala를 쓰는데, 다 잊어버려서 지금까지 왜 했나 하는 생각이 들었지만, 그래도 좀 하다보니 적응이 되었다. 다음부터는 잊지 않게 자주자주 봐야겠다.
 
-- Reference
+## Reference
 
 [https://docs.scala-lang.org/scala3/book/methods-main-methods.html](https://docs.scala-lang.org/scala3/book/methods-main-methods.html)<br/>
 [https://docs.scala-lang.org/overviews/core/string-interpolation.html](https://docs.scala-lang.org/overviews/core/string-interpolation.html)<br/>
