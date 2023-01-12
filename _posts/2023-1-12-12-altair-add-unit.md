@@ -3,7 +3,7 @@ layout: post
 title: "[Python] Altair에서 tick label에 단위를 추가하자"
 excerpt: "Altair chart에서 tick에 단위 추가하기"
 categories: ['Python']
-last_modified_at: 2023-01-12
+last_modified_at: 2023-01-13
 published: True
 ---
 
@@ -66,7 +66,7 @@ alt.Chart(source).mark_bar().encode(
 unit = "개"
 alt.Chart(source).mark_bar().encode(
     x='a',
-    y=alt.Y("b", axis=alt.Axis(labelExpr="datum.value"+unit)
+    y=alt.Y("b", axis=alt.Axis(labelExpr="datum.value + unit"))
 )
 ...
 ```
@@ -94,7 +94,7 @@ alt.Chart(source).mark_bar().encode(
 
 ## 마치며
 
-왜 저렇게 들어가야 되는지는 잘 모르겠다. 자바스크립트 에러가 나오는 것으로 보아 자바스크립트와 관련된 것 같은데... 아무튼 성공해서 다행이다.
+왜 저렇게 들어가야 되는지는 잘 모르겠다. 자바스크립트 에러가 나오는 것으로 보아 자바스크립트와 관련된 것 같은데... 아무튼 성공해서 다행이다.   
 
 ## Reference
 
