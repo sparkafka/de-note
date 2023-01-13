@@ -18,3 +18,16 @@ published: True
     _https://sparkafka.github.io/ -> https://sparkafka.github.io/de-note/_
 
     나중에 깃헙에서 개발 블로그 말고 다른 사이트를 배포할 수 있다고 생각해서 바꾸게 되었다. 이질적인 리포지토리 이름(sparkafka.github.io)도 한 몫 했다.
+
+* __sitemap 변경__   
+
+    ```
+    // 이전
+    {{ site.url }}{{ post.url }}
+    ```
+    ```
+    // 이후
+    {{ site.url }}{{ site.baseurl }}{{ post.url }}
+    ```
+
+    baseurl을 추가하고 사이트맵을 확인해보니 자동 생성되는 주소에 baseurl이 추가가 되지 않는다는 것을 확인하였다. 그래서 sitemap.xml 파일에서 주소를 담당하는 부분을 위와 같이 변경하였다.
