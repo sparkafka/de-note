@@ -3,7 +3,7 @@
 title:               De-Note
 tagline:             sparkafka's dev blog
 description:         "Data Engineer"
-url:                 "https://sparkafka.github.io/"
+url:                 "https://sparkafka.github.io"
 baseurl:             "de-note"
 paginate:            5
 permalink:           pretty
