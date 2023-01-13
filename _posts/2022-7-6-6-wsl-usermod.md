@@ -3,7 +3,7 @@ layout: post
 title: "wsl에서 유저 이름 바꾸기"
 excerpt: wsl에서 우분투 유저 이름을 변경해보자
 categories: ['General']
-last_modified_at: 2022-10-25
+lastmod: 2022-10-25
 ---
 
 ## 들어가며

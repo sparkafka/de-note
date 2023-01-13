@@ -3,7 +3,7 @@ layout: post
 title: "2023/01/04 블로그 업데이트"
 excerpt: 2023/01/04 블로그 업데이트 사항
 categories: ['Blog']
-last_modified_at: 2023-01-05
+lastmod: 2023-01-05
 published: True
 ---
 

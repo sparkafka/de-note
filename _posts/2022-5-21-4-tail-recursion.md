@@ -3,7 +3,7 @@ layout: post
 title: "[Scala] 꼬리 재귀(Tail recursion)"
 excerpt: 꼬리 재귀에 대해 알아보자.
 categories: ['Scala']
-last_modified_at: 2022-10-05
+lastmod: 2022-10-05
 ---
 
 ## 들어가며

@@ -3,7 +3,7 @@ layout: post
 title: "[Python] Altair에서 tick label에 단위를 추가하자"
 excerpt: "Altair chart에서 tick에 단위 추가하기"
 categories: ['Python']
-last_modified_at: 2023-01-13
+lastmod: 2023-01-13
 published: True
 ---
 

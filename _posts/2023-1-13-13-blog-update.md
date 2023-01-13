@@ -3,7 +3,7 @@ layout: post
 title: "2023/01/13 블로그 업데이트"
 excerpt: "2023/01/13 블로그 업데이트 사항"
 categories: ['Blog']
-last_modified_at: 2023-01-13
+lastmod: 2023-01-13
 published: True
 ---
 
@@ -23,11 +23,17 @@ published: True
 
     ```
     // 이전
-    "{{ site.url }}{{ post.url }}"
+    "'{{ site.url }}{{ post.url }}'"
     ```
     ```
     // 이후
-    "{{ site.url }}{{ site.baseurl }}{{ post.url }}"
+    "'{{ site.url }}{{ site.baseurl }}{{ post.url }}'"
     ```
 
     baseurl을 추가하고 사이트맵을 확인해보니 자동 생성되는 주소에 baseurl이 추가가 되지 않는다는 것을 확인하였다. 그래서 sitemap.xml 파일에서 주소를 담당하는 부분을 위와 같이 변경하였다.
+
+* __Post front matter 변경__   
+
+    _last_modified_at -> lastmod_
+
+    사이트맵을 자동 생성할 때 ```if post.lastmod == null``` 부분이 있었다. 알고보니 front matter에 lastmod를 확인하는 코드였다. 그래서 사이트맵에 최종 수정 날짜가 제대로 안 나오고 포스트 생성 날짜만 나왔다. 제대로 반영되도록 front matter를 수정하였다.
