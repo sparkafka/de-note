@@ -25,11 +25,11 @@ _https://sparkafka.github.io/ -> https://sparkafka.github.io/de-note/_
 
 // 이전
 
-`{{ site.url }}{{ post.url }}`
+\{\{ site.url \}\}\{\{ post.url \}\}
     
 // 이후
 
-`{{ site.url }}{{ site.baseurl }}{{ post.url }}`
+\{\{ site.url \}\}\{\{ site.baseurl \}\}\{\{ post.url \}\}
 
 baseurl을 추가하고 사이트맵을 확인해보니 자동 생성되는 주소에 baseurl이 추가가 되지 않는다는 것을 확인하였다. 그래서 sitemap.xml 파일에서 주소를 담당하는 부분을 위와 같이 변경하였다.
 
