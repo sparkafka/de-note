@@ -3,7 +3,7 @@ title:               De-Note
 tagline:             sparkafka's dev blog
 description:         'sparkafka'
 url:                 
-baseurl:             ''
+baseurl:             'de-note'
 paginate:            5
 permalink:           pretty
 
