@@ -175,7 +175,7 @@ def hello() = {
 }
 ```
 
-![구구단 결과](/images/9th/result_times-table.PNG)
+![구구단 결과](/assets/images/9th/result_times-table.PNG)
 
 &nbsp; 위와 같이 간단하게 정렬된 구구단이 출력되는 것을 알 수 있다.
 
