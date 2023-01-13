@@ -16,7 +16,7 @@ published: True
 ## 1. Datapane이란
 &nbsp; [Datapane](https://datapane.com/)은 interactive한 report를 쉽게 작성할 수 있는 파이썬 라이브러리이다.
 
-![Datapane example](/assets/images/7th/datapane_example1.jpeg)
+![Datapane example](/de-note/assets/images/7th/datapane_example1.jpeg)
 
 &nbsp; 위와 같이 chart 및 table 등을 조합하여 report html 파일을 작성할 수 있다.
 
@@ -55,7 +55,7 @@ report.save("hello.html")
 <br/>
 
 위 코드를 실행하면 ```hello.html``` 이라는 파일이 생성된다.
-![Datapane example](/assets/images/7th/datapane_hello.jpeg)
+![Datapane example](/de-note/assets/images/7th/datapane_hello.jpeg)
 
 <br/>
 
@@ -82,7 +82,7 @@ md = """
 report = dp.Report(dp.Text(md))
 report.save("multi-line.html")
 ```
-![Datapane example](/assets/images/7th/datapane_multi_line.jpeg)
+![Datapane example](/de-note/assets/images/7th/datapane_multi_line.jpeg)
 
 위와 같이 md 파일 형식을 쓸 수 있다.
 
@@ -118,7 +118,7 @@ html_text="""
 report = dp.Report(dp.HTML(html_text))
 report.save("html-test.html")
 ```
-![HTML Test](/assets/images/7th/html-test.jpeg)
+![HTML Test](/de-note/assets/images/7th/html-test.jpeg)
 
 &nbsp; 위와 같이 배경, 정렬, 폰트, 글자색 등을 자유롭게 설정할 수 있다. 
 <br/>
@@ -158,7 +158,7 @@ res = dp.HTML(html)
 report = dp.Report(res)
 report.save("jinja2-test.html")
 ```
-![Jinja2 Test](/assets/images/7th/jinja2-test.jpeg)
+![Jinja2 Test](/de-note/assets/images/7th/jinja2-test.jpeg)
 
 &nbsp; 위와 같이 HTML 파일에 변수 내용이 들어가고, 그 HTML 파일을 바탕으로 HTML Block이 생성된 것을 확인할 수 있다.
 
@@ -182,7 +182,7 @@ df_block = dp.Table(df)
 report = dp.Report(df_block)
 report.save("table-test.html")
 ```
-![Table Test](/assets/images/7th/table-test.jpeg)
+![Table Test](/de-note/assets/images/7th/table-test.jpeg)
 
 &nbsp; 위와 같이 Table Block을 생성했을 때 Table이 잘 출력되는 것을 확인할 수 있다.
 
@@ -217,7 +217,7 @@ plot = line+rule
 report = dp.Report(dp.Plot(plot))
 report.save("plot-test.html")
 ```
-![Plot Test](/assets/images/7th/plot-test.jpeg)
+![Plot Test](/de-note/assets/images/7th/plot-test.jpeg)
 
 &nbsp; 위와 같이 Report에 Plot을 삽입할 수 있다. 
 <br/>
@@ -229,7 +229,7 @@ report.save("plot-test.html")
 report = dp.Report(dp.Plot(plot, responsive=False))
 report.save("plot-test2.html")
 ```
-![Plot Test2](/assets/images/7th/plot-test2.jpeg)
+![Plot Test2](/de-note/assets/images/7th/plot-test2.jpeg)
 
 &nbsp; 위와 같이 원래 도화지 크기로 Report가 생성되는 것을 볼 수 있다.
 
@@ -267,9 +267,9 @@ report.save("narrow-test.html", formatting=dp.ReportFormatting(
         width=dp.ReportWidth.NARROW,
     ))
 ```
-![Full Test](/assets/images/7th/full-test.jpeg)
-![Medium Test](/assets/images/7th/medium-test.jpeg)
-![Narrow Test](/assets/images/7th/narrow-test.jpeg)
+![Full Test](/de-note/assets/images/7th/full-test.jpeg)
+![Medium Test](/de-note/assets/images/7th/medium-test.jpeg)
+![Narrow Test](/de-note/assets/images/7th/narrow-test.jpeg)
 
 &nbsp; 위와 같이 Report의 너비가 조절이 되는 것을 확인할 수 있다. 이외에도 다른 여러 옵션이 있으니 자세한 내용은 [Datapane Styling](https://docs.datapane.com/tutorials/styling/)을 확인하자.
 
@@ -290,7 +290,7 @@ group = dp.Group(text1, text2, text3, text1, text2, text3, columns=3)
 report = dp.Report(group, text1, text2, text3)
 report.save("group-test.html")
 ```
-![Group Test](/assets/images/7th/group-test.jpeg)
+![Group Test](/de-note/assets/images/7th/group-test.jpeg)
 
 &nbsp; 위와 같이 일반적으로 Report 클래스에 Block들을 넣으면 위에서 아래로 Block들을 배치하지만, Group 클래스 안에 Block들을 넣으면 왼쪽에서 오른쪽으로 Block들을 배치할 수 있다. 이 것을 조합하면 Block들을 원하는 대로 배치할 수 있다.
 

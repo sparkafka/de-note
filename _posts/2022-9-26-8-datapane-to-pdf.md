@@ -16,21 +16,21 @@ published: True
 ## 1. 기존의 HTML to pdf 라이브러리
 &nbsp; Python에서 사용할 수 있는 HTML to pdf 라이브러리를 대표적으로 wkhtmltopdf를 이용하는 라이브러리은 pdfkit과 weasyprint 라이브러리가 있다. 나는 먼저 pdfkit을 가지고 파일 변환을 해보았다. pdfkit을 사용하려면 먼저 wkhtmltopdf를 설치해야 한다.
 
-![기존 html 파일](/assets/images/8th/table-test.jpeg)
+![기존 html 파일](/de-note/assets/images/8th/table-test.jpeg)
 
 
 ```python
 import pdfkit
 pdfkit.from_file('table-test.html', 'table-test.pdf')
 ```
-![pdfkit 결과](/assets/images/8th/table-test-pdf.jpg)
+![pdfkit 결과](/de-note/assets/images/8th/table-test-pdf.jpg)
 &nbsp; 그런데 위와 같이 백지로만 나오고 변환이 안 되는 것이었다! weasyprint를 사용해봤지만 결과는 그대로였다.
 
 <br/>
 
 - 원인?
 
-![report 코드 일부](/assets/images/8th/report-code.png)
+![report 코드 일부](/de-note/assets/images/8th/report-code.png)
 
 &nbsp; 위 캡쳐본은 table-test.html 코드의 일부분이다. 간단한 report임에도 불구하고 ```<script>``` 태그가 상당히 길고 복잡한 것을 알 수 있다. 나도 잘 모르지만, 이런 복잡한 script 때문에 변환이 안 되는 것 아닐까라는 생각을 하였다.
 
@@ -54,7 +54,7 @@ hti.screenshot(html_str=source_html, save_as='table-html2image.png',size=(1200,1
 
 &nbsp; Html2image에서는 사이즈를 정하면 그 사이즈대로 html 파일이나 웹페이지를 캡처하여 이미지로 저장한다.
 
-![Html2image 결과](/assets/images/8th/table-html2image.png)
+![Html2image 결과](/de-note/assets/images/8th/table-html2image.png)
 
 &nbsp; 실행한 결과, 위와 같이 이미지 파일로 변환이 되었다! 이제 이 이미지 파일을 pdf로 변환시키자.
 
@@ -70,7 +70,7 @@ with open('table-img2pdf.pdf', 'wb') as file:
     file.write(img2pdf.convert('table-html2image.png'))
 ```
 
-![Img2pdf 결과](/assets/images/8th/html2pdf.jpg)
+![Img2pdf 결과](/de-note/assets/images/8th/html2pdf.jpg)
 
 &nbsp; 위와 같이 간편하게 이미지 파일이 pdf로 변환이 되는 것을 확인할 수 있다. 이렇게 Datapane Report Html 파일을 pdf로 변환하는 작업이 완료되었다.
 

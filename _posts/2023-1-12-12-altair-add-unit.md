@@ -32,7 +32,7 @@ alt.Chart(source).mark_bar().encode(
 )
 ```
 
-![Altair default](/assets/images/12th/alt_default.png)
+![Altair default](/de-note/assets/images/12th/alt_default.png)
 
 
 y label에 단위를 추가하려면 다음과 같이 ```altair.Y```의 ```labelExpr``` 파라미터에 ```"datum.value + '단위'"``` 식으로 넣으면 된다고 한다. 단위로 '개'를 추가한 모습이다. 
@@ -43,7 +43,7 @@ y label에 단위를 추가하려면 다음과 같이 ```altair.Y```의 ```label
 ...
 ```
 
-![Altair add unit](/assets/images/12th/alt_gae.png)
+![Altair add unit](/de-note/assets/images/12th/alt_gae.png)
 
 이렇게 직접적으로 문자열을 파라미터로 넣어주어 단위를 추가할 수 있었다. 그런데 나는 변수를 이용하여 단위를 추가하고 싶어서 다음과 같은 코드를 사용하였다.
 
@@ -57,7 +57,7 @@ alt.Chart(source).mark_bar().encode(
 ...
 ```
 
-![Altair error1](/assets/images/12th/alt_error1.png)
+![Altair error1](/de-note/assets/images/12th/alt_error1.png)
 
 그런데 이게 웬걸? 갑자기 label이 없어졌다. 그래서 다르게 해봤다.
 
@@ -71,7 +71,7 @@ alt.Chart(source).mark_bar().encode(
 ...
 ```
 
-![Altair error2](/assets/images/12th/alt_error2.png)
+![Altair error2](/de-note/assets/images/12th/alt_error2.png)
 
 그랬더니 이제는 아얘 실행조차 되지 않았다. 그래서 나는 다음과 같이 성공했을 때 문자열을 따옴표까지 똑같이 해서 넣어야 겠다고 생각했다.
 
@@ -86,7 +86,7 @@ alt.Chart(source).mark_bar().encode(
 ...
 ```
 
-![Altair success](/assets/images/12th/alt_success.png)
+![Altair success](/de-note/assets/images/12th/alt_success.png)
 
 그랬더니 추가한 단위가 잘 출력되는 것을 확인하였다. 변수로 단위를 넣고 싶을 때에는 위와 같은 형식으로 넣으면 될 것이다.
 
