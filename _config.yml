@@ -1,7 +1,7 @@
 # Setup
-title:               Big-Note
-tagline:             sparkafka
-description:         'Data Engineer'
+title:               De-Note
+tagline:             sparkafka's dev blog
+description:         'sparkafka'
 url:                 
 baseurl:             ''
 paginate:            5
