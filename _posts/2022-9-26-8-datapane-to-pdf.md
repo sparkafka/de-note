@@ -9,7 +9,7 @@ published: True
 
 ## 들어가며
 
-&nbsp; [지난 포스트](https://sparkafka.github.io/python/2022/09/21/7-python-datapane/)에서 Python Datapane 라이브러리로 HTML 형식의 Report를 작성해 보았다. 이제 작성한 Report HTML 파일을 pdf로 바꾸기 위해 기존에 존재하던 HTML to pdf 라이브러리를 사용했는데, 변환이 안되는 것이었다! 그래서 나는 다른 방법을 찾아야 했다...
+&nbsp; [지난 포스트](https://sparkafka.github.io/de-note/python/2022/09/21/7-python-datapane/)에서 Python Datapane 라이브러리로 HTML 형식의 Report를 작성해 보았다. 이제 작성한 Report HTML 파일을 pdf로 바꾸기 위해 기존에 존재하던 HTML to pdf 라이브러리를 사용했는데, 변환이 안되는 것이었다! 그래서 나는 다른 방법을 찾아야 했다...
 
 <br/><br/>
 
