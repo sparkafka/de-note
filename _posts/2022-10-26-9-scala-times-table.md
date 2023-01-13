@@ -3,7 +3,7 @@ layout: post
 title: "[Scala] 구구단 출력하기"
 excerpt: Scala의 이중 for문과 String interpolation을 통해 구구단을 출력해보자
 categories: ['Scala']
-lastmod: 2023-01-12
+last_modified_at: 2023-01-12
 published: True
 ---
 
