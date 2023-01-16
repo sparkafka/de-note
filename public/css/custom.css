@@ -1,0 +1,13 @@
+/* Custom */
+/* Show post category */
+p {
+  text-indent: 0.5em;
+}
+
+/* Custom */
+/* Show post category */
+.post-category {
+  font-family: "PT Sans", Georgia, "Times New Roman", serif;
+  display: block;
+  color: #505050;
+}
