@@ -6,7 +6,7 @@ description:         "Data Engineer"
 url:                 "https://sparkafka.github.io"
 baseurl:             "/de-note"
 paginate:            5
-permalink:           pretty
+permalink:           /:title/
 
 # About/contact
 author:
