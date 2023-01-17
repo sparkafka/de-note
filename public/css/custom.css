@@ -4,6 +4,10 @@ p {
   text-indent: 0.5em;
 }
 
+h2 {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
 /* Custom */
 /* Show post category */
 .post-category {
