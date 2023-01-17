@@ -3,8 +3,8 @@ layout: post
 title: "2023/01/17 블로그 업데이트"
 excerpt: "2023/01/17 블로그 업데이트 사항"
 categories: ['Blog']
-last_modified_at: 2023-01-17
-published: True
+last_modified_at: 2023-01-17\8
+published: False
 ---
 
 ## 감상
