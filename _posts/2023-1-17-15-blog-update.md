@@ -55,15 +55,15 @@ _category 추가_
 
 ![post](/de-note/assets/images/15th/post.png)
 
-위와 같이 메인 페이지와 포스트 페이지의 제목 위에 카테고리를 추가하였다. ```index.html``` 파일과 ```post.html``` 파일을 변경하였다.
+위와 같이 메인 페이지와 포스트 페이지의 제목 위에 카테고리를 추가하였다. 카테고리를 추가하기 위해 ```index.html``` 파일과 ```post.html``` 파일을 변경하였다.
 
 ```html
 <!-- index.html -->
 
-<span class="post-category">\{\{ post.categories \}\}</span>
+<span class="post-category"> post.categories </span>
     <h1 class="post-title">
         <a href="{{ post.url | absolute_url }}">
-        \{\{ post.title \}\}
+         post.title 
         </a>
     </h1>
     ...
@@ -71,10 +71,10 @@ _category 추가_
 ```html
 <!-- post.html -->
 
-<span class="post-category">\{\{ page.categories \}\}</span>
-<h1 class="post-title">\{\{ page.title \}\}</h1>
-<span class="post-date">\{\{ page.date | date_to_string \}\}</span>
-\{\{ content \}\}
+<span class="post-category">  page.categories  </span>
+<h1 class="post-title">  page.title  </h1>
+<span class="post-date">  page.date </span>
+ content 
 ...
 ```
 
