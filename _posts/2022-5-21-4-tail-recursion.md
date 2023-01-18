@@ -3,16 +3,16 @@ layout: post
 title: "[Scala] 꼬리 재귀(Tail recursion)"
 excerpt: 꼬리 재귀에 대해 알아보자.
 categories: ['Scala']
-last_modified_at: 2022-10-05
+last_modified_at: 2023-01-18
 ---
 
 ## 들어가며
 
-Coursera 강의 중 꼬리 재귀(tail recursion)에 대한 내용이 나와서 정리한다. 꼬리 재귀에 대해 알아보고 Scala로 꼬리 재귀 함수를 표현하는 법을 알아보자.
+Coursera 강의 중 꼬리 재귀(tail recursion)에 대한 내용이 나와서 정리한다. 꼬리 재귀에 대해 알아보고 Scala로 꼬리 재귀 함수를 표현하는 법을 알아보자.   
 
 [Coursera의 Functional Programming Principles in Scala](https://www.coursera.org/learn/scala2-functional-programming) 및 다른 곳의 내용을 참조하였다.
 
-<br/><br/>
+<br/>
 
 ## 꼬리 재귀
 
@@ -49,6 +49,7 @@ factorialRec(4)
 ```
 val res1: Int = 24
 ```
+
  여기서 주의할 게, Scala에서 함수를 선언할 때 타입 추론을 해주는데, 재귀 함수를 쓸 경우에는 리턴 타입을 명시해주어야 한다는 것이다. 명시하지 않을 경우 에러가 발생한다.
  
 ```scala
@@ -89,9 +90,9 @@ factorialNor(4)
 val res2: Int = 24
 ```
 
-하지만 백준 좀 풀어보신 분들은 아시겠지만, 재귀를 쓰면서 문제를 통과하기는 매우 어렵다. 재귀를 사용하면 일반적인 반복문에 비해 성능이 좋지 않기 때문이다. <br/>
+하지만 백준 좀 풀어보신 분들은 아시겠지만, 재귀를 쓰면서 문제를 통과하기는 매우 어렵다. 재귀를 사용하면 일반적인 반복문에 비해 성능이 좋지 않기 때문이다.   
 
-먼저, 함수를 호출할 때마다 메모리의 stack에 쌓기 때문에 메모리를 많이 사용하고, stack 공간을 넘을 경우 stack overflow가 발생할 수 있다. 또 각 재귀 호출이 스택 프레임을 새로 만들고 해제를 할 때마다 오버헤드가 발생하기 때문에 일반적인 반복문을 사용했을 때보다 성능이 낮다.
+먼저, 함수를 호출할 때마다 메모리의 stack에 쌓기 때문에 메모리를 많이 사용하고, stack 공간을 넘을 경우 stack overflow가 발생할 수 있다. 또 각 재귀 호출이 스택 프레임을 새로 만들고 해제를 할 때마다 오버헤드가 발생하기 때문에 일반적인 반복문을 사용했을 때보다 성능이 낮다.   
 
 이런 단점을 해결하기 위해 꼬리 재귀를 사용한다.
 
@@ -99,7 +100,7 @@ val res2: Int = 24
 
 - 꼬리 재귀
 
-꼬리 재귀를 사용하면 Scala 컴파일러가 꼬리 재귀 함수를 자동으로 반복문을 사용하는것 처럼 컴파일하여 성능 저하가 없다. <br/>
+꼬리 재귀를 사용하면 Scala 컴파일러가 꼬리 재귀 함수를 자동으로 반복문을 사용하는것 처럼 컴파일하여 성능 저하가 없다.   
 
 꼬리 재귀는 함수가 끝날 때 자기 자신을 호출하면서 끝나도록 만들면 된다. 꼬리 재귀 함수를 만들기 위해서는 반환을 그 재귀 함수만 해야 하는데, 위처럼 함수 인자가 하나일 경우 이 것이 불가능하다. 위의 Factorial 함수를 꼬리 재귀로 표현해보자. @tailrec annotation을 통해 꼬리 재귀임을 명시할 수 있다.
 ```scala
@@ -115,7 +116,7 @@ factorialTail(1, 4)
 val res3: Int = 24
 ```
 
-그런데 명색이 Factorial 함수인데 인자를 2개 써야한다는 것이 상당히 맘에 안 든다. 이럴 때 Scala의 inner function을 사용할 수 있다. <br/>
+그런데 명색이 Factorial 함수인데 인자를 2개 써야한다는 것이 상당히 맘에 안 든다. 이럴 때 Scala의 inner function을 사용할 수 있다.   
 
 Inner function은 함수 안에서 선언하는 함수로, 그 함수의 scope 안에서만 사용할 수 있다. Inner function을 사용해서 위 꼬리 재귀 함수를 바꿔보자.
 ```scala
@@ -135,7 +136,7 @@ val res4: Int = 24
 
 여기서는 factorialInner 함수의 inner function인 꼬리 재귀함수 loop를 사용하였다.
 
-<br/><br/>
+<br/>
 
 ## 마치며
 

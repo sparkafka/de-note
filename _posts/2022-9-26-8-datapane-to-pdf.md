@@ -3,7 +3,7 @@ layout: post
 title: "[Python] Datapane으로 작성한 Report의 pdf 변환"
 excerpt: Datapane으로 작성한 Report를 pdf로 변환해보자.
 categories: ['Python']
-last_modified_at: 2023-01-13
+last_modified_at: 2023-01-18
 published: True
 ---
 
@@ -11,7 +11,7 @@ published: True
 
 [지난 포스트](https://sparkafka.github.io/de-note/7-python-datapane/)에서 Python Datapane 라이브러리로 HTML 형식의 Report를 작성해 보았다. 이제 작성한 Report HTML 파일을 pdf로 바꾸기 위해 기존에 존재하던 HTML to pdf 라이브러리를 사용했는데, 변환이 안되는 것이었다! 그래서 나는 다른 방법을 찾아야 했다...
 
-<br/><br/>
+<br/>
 
 ## 1. 기존의 HTML to pdf 라이브러리
 

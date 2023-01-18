@@ -3,7 +3,7 @@ layout: post
 title: "[Python] Datapane을 이용한 보고서 작성"
 excerpt: Python Datapane 라이브러리를 사용해 HTML 보고서를 작성하자
 categories: ['Python']
-last_modified_at: 2023-01-12
+last_modified_at: 2023-01-18
 published: True
 ---
 
@@ -55,6 +55,7 @@ report.save("hello.html")
 <br/>
 
 위 코드를 실행하면 ```hello.html``` 이라는 파일이 생성된다.
+
 ![Datapane example](/de-note/assets/images/7th/datapane_hello.jpeg)
 
 <br/>
@@ -182,13 +183,15 @@ df_block = dp.Table(df)
 report = dp.Report(df_block)
 report.save("table-test.html")
 ```
+
 ![Table Test](/de-note/assets/images/7th/table-test.jpeg)
 
 위와 같이 Table Block을 생성했을 때 Table이 잘 출력되는 것을 확인할 수 있다.
 
 - Plot Table
 
-Datapane에 Matplotlib, Altair와 같은 시각화 라이브러리도 쓸 수 있다. 나는 프로젝트를 할 때 여러가지를 고려해서 Altair를 선택했다. Altair를 선택한 이유는 추후에 포스트하도록 하겠다. 각자 자기 상황에 맞는 라이브러리를 사용하면 된다.
+Datapane에 Matplotlib, Altair와 같은 시각화 라이브러리도 쓸 수 있다. 나는 프로젝트를 할 때 여러가지를 고려해서 Altair를 선택했다. Altair를 선택한 이유는 추후에 포스트하도록 하겠다. 각자 자기 상황에 맞는 라이브러리를 사용하면 된다.   
+
 Plot을 넣을 때는 어느 라이브러리든 차트를 그리는 도화지를 dp.Plot 클래스에 넣으면 된다. 그래프 예시는 [Altair Line Chart 예시](https://altair-viz.github.io/gallery/layer_line_color_rule.html)를 사용하였다.
 
 ```python
@@ -231,9 +234,7 @@ report.save("plot-test2.html")
 ```
 ![Plot Test2](/de-note/assets/images/7th/plot-test2.jpeg)
 
-위와 같이 원래 도화지 크기로 Report가 생성되는 것을 볼 수 있다.
-
-<br/>
+위와 같이 원래 도화지 크기로 Report가 생성되는 것을 볼 수 있다.   
 
 프로젝트를 작성할 때 이 정도의 Block들을 사용하였다. Block들의 종류는 많기도 하고, 계속 추가되고 있기 때문에 더 많은 종류의 Block들은 [Datapane Docs](https://docs.datapane.com/catalogues/blocks/)를 확인하자.
 
@@ -275,9 +276,7 @@ report.save("narrow-test.html", formatting=dp.ReportFormatting(
 
 - Report Layout
 
-
 이제 Block들을 배치하는 법을 알아보자. Block들을 배치할 때는 dp.Group 클래스 안에 배치할 Block들을 넣는다.
-
 
 ```python
 import datapane as dp
@@ -293,7 +292,6 @@ report.save("group-test.html")
 ![Group Test](/de-note/assets/images/7th/group-test.jpeg)
 
 위와 같이 일반적으로 Report 클래스에 Block들을 넣으면 위에서 아래로 Block들을 배치하지만, Group 클래스 안에 Block들을 넣으면 왼쪽에서 오른쪽으로 Block들을 배치할 수 있다. 이 것을 조합하면 Block들을 원하는 대로 배치할 수 있다.
-
 
 <br/>
 

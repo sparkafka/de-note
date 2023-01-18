@@ -3,14 +3,14 @@ layout: post
 title: "wsl에서 유저 이름 바꾸기"
 excerpt: wsl에서 우분투 유저 이름을 변경해보자
 categories: ['General']
-last_modified_at: 2022-10-25
+last_modified_at: 2023-01-18
 ---
 
 ## 들어가며
 
 wsl 계정 이름을 바꿀 일이 생겼는데, wsl에서 ubuntu 유저 이름을 변경하는 법을 정확히 서술한 곳을 찾기 어려워서 약간 애먹었다. 나중에 다시 변경할 일이 있을 지도 모르니 정리해 보았다.
 
-<br/><br/>
+<br/>
 
 ## 1. 우분투에서 유저 생성
 

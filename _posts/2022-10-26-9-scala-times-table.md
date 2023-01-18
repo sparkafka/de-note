@@ -3,13 +3,14 @@ layout: post
 title: "[Scala] 구구단 출력하기"
 excerpt: Scala의 이중 for문과 String interpolation을 통해 구구단을 출력해보자
 categories: ['Scala']
-last_modified_at: 2023-01-12
+last_modified_at: 2023-01-18
 published: True
 ---
 
 ## 들어가며
 
-회사에서 바쁜 업무가 지나가서, 오랜만에 Scala에 대한 기억을 되살리려고 했으나 어떻게 써야 하는지 전혀 기억이 나지 않았다! 그래서 간단히 구구단을 출력하는 프로그램을 작성하여 Scala에 대한 기억을 되살려보고자 한다. 구구단을 출력하기 전에 필요한 개념들을 정리하고 간단한 구구단 프로그램을 작성하겠다.   
+회사에서 바쁜 업무가 지나가서, 오랜만에 Scala에 대한 기억을 되살리려고 했으나 어떻게 써야 하는지 전혀 기억이 나지 않았다! 그래서 간단히 구구단을 출력하는 프로그램을 작성하여 Scala에 대한 기억을 되살려보고자 한다. 구구단을 출력하기 전에 필요한 개념들을 정리하고 간단한 구구단 프로그램을 작성하겠다.  
+
 [Scastie](https://scastie.scala-lang.org/)에서 실행했으며, Scala 3.2.0 버전을 사용하였다.
 
 <br/>
