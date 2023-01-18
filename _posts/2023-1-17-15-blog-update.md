@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "2023/01/17 블로그 업데이트"
+title: "2023/01/17 블로그 업데이트 - css 스타일 변경 외"
 excerpt: "2023/01/17 블로그 업데이트 사항"
 categories: ['Blog']
 last_modified_at: 2023-01-18
