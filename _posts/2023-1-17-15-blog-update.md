@@ -60,10 +60,10 @@ _category 추가_
 ```html
 <!-- index.html -->
 
-<span class="post-category">{{ post.categories }}</span>
+<span class="post-category">\{\{ post.categories \}\}</span>
     <h1 class="post-title">
         <a href="{{ post.url | absolute_url }}">
-        {{ post.title }}
+        \{\{ post.title \}\}
         </a>
     </h1>
     ...
@@ -71,10 +71,10 @@ _category 추가_
 ```html
 <!-- post.html -->
 
-<span class="post-category">{{ page.categories }}</span>
-<h1 class="post-title">{{ page.title }}</h1>
-<span class="post-date">{{ page.date | date_to_string }}</span>
-{{ content }}
+<span class="post-category">\{\{ page.categories \}\}</span>
+<h1 class="post-title">\{\{ page.title \}\}</h1>
+<span class="post-date">\{\{ page.date | date_to_string \}\}</span>
+\{\{ content \}\}
 ...
 ```
 
