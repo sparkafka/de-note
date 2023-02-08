@@ -98,7 +98,7 @@ alt.Chart(source).mark_bar().encode(
 
 ## Reference
 
-[https://altair-viz.github.io/gallery/simple_bar_chart.html](https://altair-viz.github.io/gallery/simple_bar_chart.html)   
-[https://altair-viz.github.io/user_guide/generated/core/altair.Axis.html](https://altair-viz.github.io/user_guide/generated/core/altair.Axis.html)   
-[https://stackoverflow.com/questions/69796996/to-show-bbillion-instead-of-ggiga-in-altair-charts-python](https://stackoverflow.com/questions/69796996/to-show-bbillion-instead-of-ggiga-in-altair-charts-python)
+- [https://altair-viz.github.io/gallery/simple_bar_chart.html](https://altair-viz.github.io/gallery/simple_bar_chart.html)   
+- [https://altair-viz.github.io/user_guide/generated/core/altair.Axis.html](https://altair-viz.github.io/user_guide/generated/core/altair.Axis.html)   
+- [https://stackoverflow.com/questions/69796996/to-show-bbillion-instead-of-ggiga-in-altair-charts-python](https://stackoverflow.com/questions/69796996/to-show-bbillion-instead-of-ggiga-in-altair-charts-python)
 

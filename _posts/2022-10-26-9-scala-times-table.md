@@ -194,7 +194,7 @@ def hello() = {
 
 ## Reference
 
-[https://docs.scala-lang.org/scala3/book/methods-main-methods.html](https://docs.scala-lang.org/scala3/book/methods-main-methods.html)   
-[https://docs.scala-lang.org/overviews/core/string-interpolation.html](https://docs.scala-lang.org/overviews/core/string-interpolation.html)   
-[https://docs.scala-lang.org/scala3/book/control-structures.html#for-loops](https://docs.scala-lang.org/scala3/book/control-structures.html#for-loops)   
-[https://docs.scala-lang.org/tour/for-comprehensions.html#inner-main](https://docs.scala-lang.org/tour/for-comprehensions.html#inner-main)
+- [https://docs.scala-lang.org/scala3/book/methods-main-methods.html](https://docs.scala-lang.org/scala3/book/methods-main-methods.html)   
+- [https://docs.scala-lang.org/overviews/core/string-interpolation.html](https://docs.scala-lang.org/overviews/core/string-interpolation.html)   
+- [https://docs.scala-lang.org/scala3/book/control-structures.html#for-loops](https://docs.scala-lang.org/scala3/book/control-structures.html#for-loops)   
+- [https://docs.scala-lang.org/tour/for-comprehensions.html#inner-main](https://docs.scala-lang.org/tour/for-comprehensions.html#inner-main)

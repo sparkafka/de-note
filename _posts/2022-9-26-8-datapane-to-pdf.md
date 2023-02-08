@@ -82,6 +82,6 @@ with open('table-img2pdf.pdf', 'wb') as file:
 
 ## Reference
 
-[https://datapane.com/](https://datapane.com/)   
-[https://pypi.org/project/html2image/](https://pypi.org/project/html2image/)   
-[https://pypi.org/project/img2pdf/](https://pypi.org/project/img2pdf/)
+- [https://datapane.com/](https://datapane.com/)   
+- [https://pypi.org/project/html2image/](https://pypi.org/project/html2image/)   
+- [https://pypi.org/project/img2pdf/](https://pypi.org/project/img2pdf/)

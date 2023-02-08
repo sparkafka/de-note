@@ -301,5 +301,5 @@ report.save("group-test.html")
 
 ## Reference
 
-[https://datapane.com/](https://datapane.com/)   
-[https://altair-viz.github.io/](https://altair-viz.github.io/)
+- [https://datapane.com/](https://datapane.com/)   
+- [https://altair-viz.github.io/](https://altair-viz.github.io/)
