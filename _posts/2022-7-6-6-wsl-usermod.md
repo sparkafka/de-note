@@ -3,7 +3,7 @@ layout: post
 title: "wsl에서 유저 이름 바꾸기"
 excerpt: wsl에서 우분투 유저 이름을 변경해보자
 categories: ['General']
-last_modified_at: 2023-01-18
+last_modified_at: 2023-02-16
 ---
 
 ## 들어가며
@@ -26,10 +26,10 @@ sudo adduser <임시 유저> sudo // 임시 유저에 su 권한 주기
 
 ## 2. 임시 유저에 로그인 하기
 
-이제 wsl에서 원래 ubuntu 계정이 아닌, 임시 계정으로 로그인을 해야 한다. Window에서 새로 만든 계정으로 로그인하자.
+이제 wsl에서 원래 ubuntu 계정이 아닌, 임시 계정으로 로그인을 해야 한다. Windows 커맨드 창에서 새로 만든 계정으로 로그인하자.
 
 ```bash
-// window powershell
+// Windows powershell
 wsl --shutdown
 wsl -u <임시 유저>
 ```
@@ -55,7 +55,7 @@ sudo usermod -d <변경할 유저 이름> -m <변경할 유저 이름> // 홈 �
 이제 wsl을 재부팅하자.
 
 ```bash
-// window powershell
+// Windows powershell
 wsl --shutdown
 wsl
 ```
