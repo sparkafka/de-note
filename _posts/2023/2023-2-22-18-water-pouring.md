@@ -9,13 +9,20 @@ published: False
 
 ## 들어가며
 
-[Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2주차 5번째 강의는 그동안 배웠던 내용의 총정리 개념으로 Water Pouring Puzzle(물통 퍼즐)을 푸는 스칼라 코드에 대해 설명하였다. 나도 이 강의를 통해 그동안 배웠던 것을 정리하는 것이 좋다고 생각하였다.
+[Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2주차 5번째 강의는 그동안 배웠던 내용의 총정리 개념으로 Water Pouring Puzzle(물통 퍼즐)을 푸는 스칼라 코드에 대해 설명하였다. 나도 이번 기회에 그동안 배웠던 것을 정리하는 것이 좋다고 생각하였다. 이번 회차에서 작성한 코드에 대해 설명하면서 내용을 정리하도록 하겠다.
 
-## For-Expressions
+## Water Pouring Puzzle
 
-[나의 작년 게시글](https://sparkafka.github.io/de-note/9-scala-times-table/)에서 for 문을 보통 collection을 조회하는 데에 쓰인다고 적었다. 지금 다시 봤는데, 부족한 설명인 것 같아서 요즘 나의 친구 ChatGPT에 물어보았다.
+![Water Pouring Puzzle](/de-note/assets/images/18th/Water_pouring_puzzle.png)
 
-![chatgpt_for](/de-note/assets/images/17th/scala-for-chatgpt.png)
+Water Pouring Puzzle([위키](https://en.wikipedia.org/wiki/Water_pouring_puzzle))은 학창시절 초등학생 때 한 번 쯤은 다들 봤을법한 문제이다. 다음과 같이 용량만 알고, 눈금이 없는 물통 여러 개를 이용해서 특정한 양의 물을 얻는 문제이다. 
+
+```
+눈금 없는 5L, 3L 물통을 이용하여 4L를 만드시오
+```
+
+이번 강의에서 2가지 물통에서 일반화하여, 여러 개의 물통일 때 특정한 양의 물을 얻는 코드를 스칼라로 작성하였다.
+
 
 오... scala에서 for 문은 collection에 연산을 수행하기 위한 synthetic sugar이고, collection에 일련의 연산을 수행한 뒤 새로운 collection을 결과값으로 반환한다고 한다.   
 
