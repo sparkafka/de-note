@@ -3,7 +3,7 @@ layout: post
 title: "[Scala] Scala Class"
 excerpt: "Scala class에 대해 정리하자. Scala3 에서의 변경점을 알아보자."
 categories: ['Scala']
-last_modified_at: 2023-02-23
+last_modified_at: 2023-02-25
 published: True
 ---
 
@@ -33,6 +33,15 @@ val b: classTest1 = classTest1@7196a8f1
 ```
 
 원래 스칼라에서, case class를 선언할 때 자동적으로 apply 메서드를 생성하였고, 그래서 case class의 인스턴스를 선언할 때 new를 붙이지 않아도 됐는데 scala3 에서는 이것을 확장하여 일반적인 클래스에도 적용이 되었다.   
+
+```scala
+// case class의 인스턴스를 생성할 시에는 new를 붙이지 않아도 된다.
+scala> case class cClassTest1(val a:Int)
+// defined case class cClassTest1
+
+scala> val test1 = cClassTest1(2)
+val test1: cClassTest1 = cClassTest1(2)
+```
 
 [공식 문서](https://docs.scala-lang.org/scala3/reference/other-new-features/creator-applications.html)에 따르면, 클래스를 선언할 때 다음과 같이 apply method를 가진 companion object가 같이 생성된다고 한다.
 
