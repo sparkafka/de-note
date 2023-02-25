@@ -4,12 +4,29 @@ title: "[Scala] Water Pouring 문제"
 excerpt: "Scala로 Water Pouring 퍼즐을 풀어보자."
 categories: ['Scala']
 last_modified_at: 2023-02-25
-published: False
+published: True
 ---
 
 ## 들어가며
 
 이 내용은 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2주차 5번째 강의에 있는 내용이다. 강의에서 Water Pouring Puzzle 알고리즘을 풀어보면서 그 동안 배웠던 내용을 정리하고 있는데, 나도 그에 대한 내용을 포스트로 정리해보면 좋을 것이라는 생각이 들어서 작성하게 되었다. [지난 번](https://sparkafka.github.io/de-note/18-scala-class)에는 class에 대한 내용을 작성하였는데, 이번에는 나머지 내용에 대해 정리를 해볼 것이다. 코드를 한 줄씩 분석해보며 관련 내용을 정리해보자. 나도 잘 모르기 때문에 자세한 내용은 강의를 직접 보시길 바란다.
+
+## Water Pouring Puzzle
+
+![Water Pouring Puzzle](/de-note/assets/images/19th/Water_pouring_puzzle.png)
+
+Water Pouring Puzzle은 학창시절에 다들 한 번 씩은 봤을 만한 문제이다. 눈금이 없는 2개 이상의 물통을 통해 특정한 양의 물을 얻는 방법을 알아내는 문제이다.   
+
+예를 들어, 눈금 없는 4L의 물통과 7L의 물통이 있을 때 6L의 물을 얻는 방법을 생각해보자.
+
+1. 7L의 물통에 물을 가득 채운다. (4L 물통 - 0L, 7L 물통 - 7L)
+2. 4L의 물통으로 7L 물통의 물을 퍼낸다. (4L 물통 - 4L, 7L 물통 - 3L)
+3. 4L 물통의 물을 버린다. (4L 물통 - 0L, 7L 물통 - 3L)
+4. 7L 물통의 물을 4L 물통으로 옮긴다. (4L 물통 - 3L, 7L 물통 - 0L)
+5. 7L 물통을 채운다. (4L 물통 - 3L, 7L 물통 - 7L)
+6. 7L 물통의 물을 4L 물통이 다 찰 때까지 비우면 7L의 물통에는 6L의 물이 남는다. (4L 물통 - 4L, 7L 물통 - 6L)
+
+이번 포스트에서는 스칼라를 통해 이 퍼즐을 풀어볼 것이다.
 
 ## Class
 
@@ -111,126 +128,73 @@ scala> vector1.updated(2, 0)
 val res0: Vector[Int] = Vector(1, 2, 0, 4, 5)
 ```
 
-원래 스칼라에서, case class를 선언할 때 자동적으로 apply 메서드를 생성하였고, 그래서 case class의 인스턴스를 선언할 때 new를 붙이지 않아도 됐는데 scala3 에서는 이것을 확장하여 일반적인 클래스에도 적용이 되었다.   
+원래 예제를 다시 보자. Move trait을 선언하면서 이 trait을 상속받는 클래스들은 Move의 하위 클래스라는 것을 알려주고 있다. 또 change라는 abstract method를 통해 하위 클래스들은 change를 구현해야 함을 알려주고 있다.   
+
+Empty 클래스는 glass 번째 물통을 비우는 클래스이다. Empty는 Move를 상속받고, glass 라는 Int 타입의 객체를 입력 받으면서 현재 물통 상태인 state 객체의 glass 번째 값을 0으로 만든다.   
+
+Fill 클래스는 glass 번째 물통을 채우는 클래스이다. Fill은 glass를 입력 받아 state의 glass 번째 값을 glass의 capacity 만큼 채운다.   
+
+Pour 클래스는 from 번째 물통에서 to 번째 물통으로 물을 옮기는 클래스이다. from과 to를 입력받아 (from 번째 물통의 현재 물의 양)과 ((to 번째 물통 용량) - (to 번째 물통의 현재 물의 양))을 비교하여 더 적은 양을 from 번째 물통에서 빼고 to 번째 물통에 넣는다. 예를 들어 4L 물통에 물 4L가 담겨있고 7L 물통에 물 4L가 담겨 있는 상태에서 4L 통에 있는 물을 7L 통으로 옮기면 7-4=3L의 물을 4L 통에서 빼서 7L 통으로 옮긴다. 결국 4L 통에는 4-3=1L가 남고 7L 통에는 7L 가 채워진다.
+
+## 동작 생성
 
 ```scala
-// case class의 인스턴스를 생성할 시에는 new를 붙이지 않아도 된다.
-scala> case class cClassTest1(val a:Int)
-// defined case class cClassTest1
+val glasses = 0 until capacity.length
 
-scala> val test1 = cClassTest1(2)
-val test1: cClassTest1 = cClassTest1(2)
+val moves = 
+  (for (g <- glasses) yield Empty(g)) ++
+  (for (g <- glasses) yield Fill(g)) ++
+  (for (from <- glasses; to <- glasses if from != to) yield Pour(from, to))
 ```
 
-[공식 문서](https://docs.scala-lang.org/scala3/reference/other-new-features/creator-applications.html)에 따르면, 클래스를 선언할 때 다음과 같이 apply method를 가진 companion object가 같이 생성된다고 한다.
+이 부분에서는 가능한 모든 동작들을 moves라는 멤버 변수에 모두 저장한다. for-yield 문을 통해 각 동작들을 생성하고 ```++``` 메서드를 통해 결과들을 결합한다.
 
 ```scala
-// class 선언
-class TestBuilder(s: String):
-  def this() = this("")
-end TestBuilder
-
-// 같이 생성되는 companion object
-object TestBuilder:
-  inline def apply(s: String): TestBuilder = new TestBuilder(s)
-  inline def apply(): TestBuilder = new TestBuilder()
-```
-```scala
-// apply 메서드로 인스턴스가 생성되는 모습
-scala> TestBuilder.apply()
-val res3: TestBuilder = TestBuilder@66075347
+val problem = new Pouring(Vector(4, 9))
+problem.moves
+// res0: IndexedSeq[Move] = Vector(Empty(0), Empty(1), Fill(0), Fill(1), Pour(0,1), Pour(1,0))
 ```
 
-또 위와 같이 클래스를 선언하는 문법이 추가가 되었다. ```:```을 쓰고 들여쓰기로 구분을 하고 선언이 끝날 때 ```end [클래스명]```을 붙여주면서 선언이 끝난 것을 명시할 수 있다. 콜론과 들여쓰기로 구분을 하는 것은 파이썬에서 클래스를 선언하는 것이 생각난다. 물론 기존과 같이 ```{}```를 이용해서 선언하는 것도 가능하다.   
-
-클래스를 선언할 때 인자를 넣고 싶으면 위와 같이  ```class [클래스명](인자,...)``` 형식으로 클래스를 선언해야 한다.
+## Path
 
 ```scala
-scala> class classTest2(x: Int, y: Int)
-// defined class classTest2
-
-scala> val c = classTest2(1, 2)
-val c: classTest2 = classTest2@3f357c9d
-```
-
-인자에 기본값을 넣고 싶으면 다음과 같이 기본값을 넣으면서 클래스를 선언하면 된다.
-
-```scala
-scala> class classTest3(x: Int=1, y: Int=2)
-// defined class classTest3
-
-scala> val d = classTest3()
-val d: classTest3 = classTest3@5cb4e255
-```
-
-인스턴스를 생성하면서 멤버 변수도 같이 생성하고 싶으면 다음과 같이 인자 앞에 val이나 var를 붙여주면 된다.
-
-```scala
-scala> class classTest4(val x: Int=1, val y: Int=2)
-// defined class classTest4
-
-scala> val test5 = classTest4(3,4)
-val test5: classTest4 = classTest4@5d8edf2
-
-scala> test5.x
-val res4: Int = 3
-```
-
-기본값이 있으면 다음과 같이 특정 인자만 명시해서 인스턴스를 생성할 수 있다.
-
-```scala
-scala> val test6 = classTest4(y=4)
-val test6: classTest4 = classTest4@3622c9f0
-    
-scala> test6.x
-val res5: Int = 1
-```
-
-인스턴스를 생성할 때마다 어떤 동작을 하고 싶으면 다음과 같이 동작할 함수를 클래스에 넣으면 된다.
-
-```scala
-class printClassTest(val x: Int = 1, val y: Int = 2){
-  println("Hello, World!")
-  println(s"x: $x, y: $y")
-}
-// defined class printClassTest
-           
-scala> val test7 = printClassTest()
-Hello, World!
-x: 1, y: 2
-val test7: printClassTest = printClassTest@485902cd
-```
-
-위에 잠깐 나왔지만, 클래스를 선언할 때 ```this()```라는 보조 생성자를 사용하여 다양한 상황에서 사용할 수 있는 생성자들을 만들 수 있다.
-
-```scala
-class constTest(val x: Int, val y: Int, val name: String) {
-  def this(x: Int, y: Int) = {
-    this(x, y, "John")
-    println("Default name")
+class PathOrigin(history: List[Move]) {
+  def endState: State = trackState(history)
+  private def trackState(xs: List[Move]): State = xs match {
+    case Nil => initialState
+    case move :: xs1 => move change trackState(xs1)
   }
-  def this() = {
-    this(1, 2, "John")
-    println("No parameter")
-  }
-  println("Original")
-}
 
-val a = constTest(3, 4, "James")
-/*
-Original
-*/
-val b = constTest(1, 2)
-/*
-Original
-Default name
-*/
-val c = constTest()
-/*
-Original
-No parameter
-*/
+  def extend(move: Move) = new PathOrigin(move :: history)
+  override def toString = (history.reverse mkString " ") + "--> " + endState
+}
 ```
+
+Path는 동작(Move)들의 Sequence이다. 즉 동작들을 연속적으로 수행하는 것이 Path이다. 이 강의에서는 가장 마지막 move가 path의 맨 앞으로 오도록 했다. 위 클래스에서, ```endState```는 path의 모든 동작들을 시킨 후의 결과 state이다. 그 동작들을 수행하는 메서드는 `trackState` 이다.   
+
+`trackState`는 Move의 List를 입력받아 List에 저장된 Move들을 수행한 후의 최종 state를 반환한다. 이 메서드는 pattern matching으로 구현되어 있다. `xs`가 Nil이면 `initialState`를 반환하고, List 형식이면 List의 첫 번째 요소의 change 메서드를 뒤 요소 List의 결과물을 입력받아 실행한 결과물을 반환한다. 이 메서드는 재귀적으로 수행되어 요소가 Nil일 때까지 반복한다. 이 메서드가 수행되는 모습을 그림으로 표현하면 다음과 같다.
+
+![trackState method](/de-note/assets/images/19th/trackState.jpg)
+
+논리적으로, initialState에서 시작하여 처음 move의 change 연산부터 순차적으로 수행되어, 각 change 연산이 수행되어 생성되는 state들이 결합되어, 마지막으로 xs의 head move의 change 연산이 수행되어 endState를 반환하게 된다.   
+
+그런데 이것을 간단히 수행할 수 있는 메서드가 있다. 바로 foldRight 메서드이다. 위와 같이 데이터 구조를 합칠 수 있는 연산의 재귀적 호출을 통해 최종 결과 데이터 구조를 반환하는 함수를 fold 함수라 하는데, 위의 경우는 오른쪽에서 위로 올라오므로 foldRight 함수이다.
+
+![foldRight](/de-note/assets/images/19th/foldRight.jpg)
+
+반대로 왼쪽에서 위로 올라오는 fold 함수를 foldLeft 함수라 한다.
+
+![foldLeft](/de-note/assets/images/19th/foldLeft.jpg)
+
+위의 `endState`를 foldRight 메서드를 통해 구현해보자. 초기 값은 initialState이고, history List를 맨 뒤부터 change 메서드를 순차적으로 수행하여 List를 결합하고 마지막으로 List의 head의 change를 수행하며 endState를 반환한다. 이 것을 다음과 같이 구현할 수 있다.
+
+```scala
+val endState: State = (history foldRight initialState) (_ change _)
+```
+
+위와 같이 fold 메서드를 통해 간단히 구현이 가능하다.
+
+
 
 ## 마치며
 
