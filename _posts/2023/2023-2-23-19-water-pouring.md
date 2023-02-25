@@ -4,7 +4,7 @@ title: "[Scala] Water Pouring 문제"
 excerpt: "Scala로 Water Pouring 퍼즐을 풀어보자."
 categories: ['Scala']
 last_modified_at: 2023-02-25
-published: False
+published: True
 ---
 
 ## 들어가며
@@ -12,8 +12,6 @@ published: False
 이 내용은 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2주차 5번째 강의에 있는 내용이다. 강의에서 Water Pouring Puzzle 알고리즘을 풀어보면서 그 동안 배웠던 내용을 정리하고 있는데, 나도 그에 대한 내용을 포스트로 정리해보면 좋을 것이라는 생각이 들어서 작성하게 되었다. [지난 번](https://sparkafka.github.io/de-note/18-scala-class)에는 class에 대한 내용을 작성하였는데, 이번에는 나머지 내용에 대해 정리를 해볼 것이다. 코드를 한 줄씩 분석해보며 관련 내용을 정리해보자. 나도 잘 모르기 때문에 자세한 내용은 강의를 직접 보시길 바란다.
 
 ## Class
-
-강의의 코드는 다음과 같이 시작한다.
 
 ```scala
 class Pouring(capacity: Vector[Int]) {
@@ -24,8 +22,10 @@ class Pouring(capacity: Vector[Int]) {
 }
 ```
 
-```Vector[Int]``` 타입의 ```capacity``` 인자를 받으면서 클래스를 선언하는 모습이다. 여기서 ```capacity```는 사용할 물통들의 용량을 뜻한다. 클래스에 대한 내용은 [이전 포스트](https://sparkafka.github.io/de-note/18-scala-class)를 참조 해주길 바란다.   
+강의의 코드는 위와 같이 ```Vector[Int]``` 타입의 ```capacity``` 인자를 받으면서 Pouring 클래스를 선언하는 모습이다. 여기서 ```capacity```는 사용할 물통들의 용량을 뜻한다. 클래스에 대한 내용은 [이전 포스트](https://sparkafka.github.io/de-note/18-scala-class)를 참조 해주길 바란다.   
+
 다음 줄에서는 ```type``` 키워드를 통해 클래스 안에서 쓰일 타입을 선언하고 있다. ```Vector[Int]```를 ```State``` 타입으로 선언하고 있다. 이런 식으로 타입을 선언해 두면 어떤 때 이 타입을 사용하는지 명확하게 표현할 수 있다.   
+
 다음 줄에서는 ```initialState```를 초기화 하고 있다. ```map``` 메서드를 통해 ```capacity```의 크기만큼의 0으로 된 ```Vector[Int]```를 만들고 있다.   
 이후에 나오는 코드들은 모드 ```Pouring``` 클래스 안에 들어있는 내용이다.
 
@@ -36,7 +36,6 @@ class Pouring(capacity: Vector[Int]) {
 trait Move {
   def change(state: State): State
 }
-// updated(i,v): A new vector with the element at index i replaced with the new value v
 case class Empty(glass: Int) extends Move {
   def change(state: State): State = state updated (glass, 0)
 }
@@ -51,16 +50,65 @@ case class Pour(from: Int, to: Int) extends Move {
 }
 ```
 
-다음에는 trait과 case class를 통해 Water Pouring Puzzle에서 필요한 동작들을 선언하고 있다. 위와 같이 trait 혹은 abstract class와 case class의 조합을 통해 같은 종류지만 구현이 다른 클래스들을 보기 좋게 선언할 수 있다.   
+다음에는 trait과 case class를 통해 Water Pouring Puzzle에서 필요한 동작들을 선언하고 있다. 위 예제와 같이 trait 혹은 abstract class와 case class의 조합을 통해 계층구조를 쉽게 표현할 수 있다.   
+
+trait은 자바의 interface와 비슷하지만, 하나의 클래스는 하나의 interface만 상속받을 수 있는 것과 달리 스칼라에서는 하나의 클래스가 두 개 이상의 trait을 상속받을 수 있다.
 
 ```scala
-// scala2
-scala> val a = new classTest1
-val a: classTest1 = classTest1@6a5dd083
+scala> trait trait1
+// defined trait trait1
 
-// scala3 부터는 new를 붙이지 않아도 된다.
-scala> val b= classTest1()
-val b: classTest1 = classTest1@7196a8f1
+scala> trait trait2
+// defined trait trait2
+
+scala> class class1 extends trait1, trait2
+// defined class class1
+```
+
+[공식 문서](https://docs.scala-lang.org/ko/tour/case-classes.html)에 따르면, case class는 다음과 같은 특징을 가지는 일반 클래스라고 한다.
+
+- 기본적으로 불변
+- 패턴 매칭을 통해 분해가능
+- 레퍼런스가 아닌 구조적인 동등성으로 비교됨
+- 초기화와 운영이 간결함
+
+위에서 말했다시피, case class와 trait을 쓰면 계층 클래스 구조를 쉽게 표현할 수 있다. 다음은 trait과 case class를 통해 fruit 종류를 표현하는 예제이다.
+
+```scala
+scala> trait fruit
+// defined trait fruit
+scala> case class apple() extends fruit
+// defined case class apple
+scala> case class strawberry(name: String) extends fruit
+// defined case class strawberry
+scala> case class kiwi(name: String, grade: Int) extends fruit
+// defined case class kiwi
+```
+
+case class에서는 일반적인 class와는 달리 클래스를 선언할 때 꼭 인자 목록을 넣어줘야 한다(비어 있어도 가능).
+
+```scala
+scala> case class pear extends fruit
+-- [E004] Syntax Error: --------------------------------------------------------
+1 |case class pear extends fruit
+  |           ^^^^
+  |           A case class must have at least one parameter list
+  |
+  | longer explanation available when compiling with `-explain`
+1 error found
+
+scala> case class pear() extends fruit
+// defined case class pear
+```
+
+원래 예제에서, ```state.updated(a,b)```라는 메서드를 사용하고 있다. state는 이전에 선언했던 State 타입, 즉 ```Vector[Int]``` 타입의 객체이다. updated 메서드는 ```Vector``` 클래스의 내장 함수로, a번째 요소를 b로 바꾸는 메서드이다.
+
+```scala
+scala> val vector1: Vector[Int]  = Vector[Int](1,2,3,4,5)
+val vector1: Vector[Int] = Vector(1, 2, 3, 4, 5)
+
+scala> vector1.updated(2, 0)
+val res0: Vector[Int] = Vector(1, 2, 0, 4, 5)
 ```
 
 원래 스칼라에서, case class를 선언할 때 자동적으로 apply 메서드를 생성하였고, 그래서 case class의 인스턴스를 선언할 때 new를 붙이지 않아도 됐는데 scala3 에서는 이것을 확장하여 일반적인 클래스에도 적용이 되었다.   

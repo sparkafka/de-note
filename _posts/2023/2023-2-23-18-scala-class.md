@@ -32,7 +32,7 @@ scala> val b= classTest1()
 val b: classTest1 = classTest1@7196a8f1
 ```
 
-원래 스칼라에서, case class를 선언할 때 자동적으로 apply 메서드를 생성하였고, 그래서 case class의 인스턴스를 선언할 때 new를 붙이지 않아도 됐는데 scala3 에서는 이것을 확장하여 일반적인 클래스에도 적용이 되었다.   
+원래 스칼라에서, case class를 선언할 때 자동적으로 apply 메서드를 생성하였고, 그래서 case class의 인스턴스를 선언할 때 new를 붙이지 않아도 됐는데 scala3 부터는 이것을 확장하여 일반적인 클래스에도 적용이 되었다.   
 
 ```scala
 // case class의 인스턴스를 생성할 시에는 new를 붙이지 않아도 된다.
