@@ -80,7 +80,7 @@ expr
 
 ## LazyList
 
-LazyList는 scala에서 그 안의 요소들이 쓰이는 순간에 평가를 하는 linked list이다. 
+LazyList는 scala에서 그 안의 요소들이 쓰이는 순간에 평가를 하는 linked list이다. 2.12까지는 Stream이었으나 용어 혼동이 된다고 하여 뜻이 더 명확한 LazyList로 이름을 변경하게 됐다고 한다.
 
 ```scala
 scala> val lazyList: LazyList[Int] = LazyList(1,2,3,4,5)
@@ -101,6 +101,8 @@ def from(n: Int): LazyList[Int]
 scala> from(2).take(3).toList
 val res0: List[Int] = List(2, 3, 4)
 ```
+
+LazyList에서는 head에 요소를 추가하기 위해 `#::`를 사용한다.   
 
 위 함수같은 경우는 기존의 List사용할 경우 함수가 호출되는 순간 무한한 값이 나와 에러가 발생되겠지만, LazyList는 안의 값들이 호출될 때 계산되므로 값이 정상적으로 계산될 수 있다.   
 

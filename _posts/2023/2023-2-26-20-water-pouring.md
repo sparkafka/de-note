@@ -4,7 +4,7 @@ title: "[Scala] Water Pouring 문제"
 excerpt: "Scala로 Water Pouring 퍼즐을 풀어보자."
 categories: ['Scala']
 last_modified_at: 2023-02-26
-published: False
+published: True
 ---
 
 ## 들어가며
@@ -234,12 +234,47 @@ def from(paths: Set[Path], explored: Set[State]): LazyList[Set[Path]] = {
 val pathSets = from(Set(initialPath), Set(initialState))
 ```
 
-이제 경로의 모든 경우의 수들을 계산하여 저장해 보자. from 메서드는 Path의 집합과 State들의 집합을 입력받아 Path의 집합의 LazyList를 반환하고 있다. LazyList는 immutable linked list로, 선언된 순간에 리스트가 생성되는 것이 아닌, 리스트 안의 요소들이 필요한 순간에 계산된다.
+이제 경로의 모든 경우의 수들을 계산하여 저장해 보자. from 메서드는 Path의 집합과 State들의 집합을 입력받아 Path의 집합의 LazyList를 반환하고 있다. LazyList는 immutable linked list로, 선언된 순간에 리스트가 생성되는 것이 아닌, 리스트 안의 요소들이 필요한 순간에 계산된다. LazyList에 대한 내용은 [지난 포스트](https://sparkafka.github.io/de-note/19-lazy-evaluation/)에서 정리하였다.   
+
+from 메서드는 가능한 모든 path들이 조합을 LazyList 형태로 생성하는 메서드이다. 입력받은 path Set과 state Set에서 시작하여 path의 경우의 수를 무한히 생성하는 메서드이다. 이전의 path Set들에 가능한 동작을 수행하여 새로운 path Set을 생성한다. 중복되는 state는 추가하지 않는다. `pathSet`는 `initialPath`와 `initialState`에서 시작하여 가능한 path 경우의 수를 저장하는 LazyList이다. 이 `pathSet`의 요소들을 사용하는 순간 평가된다.   
+
+```paths #:: from(more, explored ++ (more map (_.endState)))``` 부분을 보면, 무한히 from 메서드의 결과를 붙이는 것을 알 수 있다. 일반 List라면 무한하기 때문에 불가능하지만 LazyList는 필요한 요소만 평가하기 때문에 from 메서드를 사용할 수 있다. 
+
+`pathSet`을 직접 사용해 보면 다음과 같다.
+
+```scala
+val problem = new Pouring(Vector(4, 7))
+problem.pathSets.take(2).toList
+res1: List[Set[Path]] = List(Set(--> Vector(0, 0)), Set(Fill(0)--> Vector(4, 0), Fill(1)--> Vector(0, 7)))
+```
+
+`pathSet`의 2 번째 요소까지 잘 가져오는 것을 확인할 수 있다.
+
+## Solution
+
+```scala
+def solutions(target: Int): LazyList[Path] = 
+  for {
+    pathSet <- pathSets
+    path <- pathSet
+    if path.endState contains target
+  } yield path
+```
+
+정답을 찾는 메서드는 간단하다. 타겟 정수를 입력 받고, `pathSet`의 `endState`에 타겟 정수가 있으면 그 path를 반환한다. 사용해보면 다음과 같다.
+
+```scala
+val problem = new Pouring(Vector(4, 7))
+problem.solutions(6).toList
+res2: List[Path] = List(Fill(1) Pour(1,0) Empty(0) Pour(1,0) Fill(1) Pour(1,0)--> Vector(4, 6), Fill(1) Pour(1,0) Empty(0) Pour(1,0) Fill(1) Pour(1,0) Empty(0)--> Vector(0, 6))
+```
+
+6을 얻는 path가 잘 나오는 것을 확인할 수 있다.
+
 ## 마치며
 
-이렇게 class 부터 보니까 머리 속이 정리가 되는 기분이다. 특이 scala3 에서의 변경점은 이번에 정리를 안 했으면 모를 뻔 했다. 근데 콜론을 이용하여 클래스를 만드는 것은 굳이 쓸까 싶긴 한데, 뭐 알아두면 나쁘진 않겠지. 좋은 시간이었다.
+Water Pouring Puzzle을 통해 그동안 스칼라에 대해 배웠던 내용이 잘 정리된 느낌이다. 강의를 들으면서 스칼라 언어가 참 흥미롭기도 하지만, 어려운 알고리즘을 참 쉽게 구현하는 것 같았다. 나도 그 정도의 경지에 오르고 싶다는 생각이 들었다.
 
 ## Reference
 
-- [https://docs.scala-lang.org/scala3/reference/other-new-features/creator-applications.html](https://docs.scala-lang.org/scala3/reference/other-new-features/creator-applications.html)   
-- [https://docs.scala-lang.org/scala3/book/domain-modeling-tools.html#classes](https://docs.scala-lang.org/scala3/book/domain-modeling-tools.html#classes)   
+- [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)
