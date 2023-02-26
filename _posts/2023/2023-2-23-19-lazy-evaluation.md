@@ -1,15 +1,17 @@
 ---
 layout: post
-title: "[Scala] Water Pouring 문제"
-excerpt: "Scala로 Water Pouring 퍼즐을 풀어보자."
+title: "[Scala] Lazy Evaluation"
+excerpt: "Scala의 Lazy Evaluation을 알아보자."
 categories: ['Scala']
-last_modified_at: 2023-02-25
+last_modified_at: 2023-02-26
 published: True
 ---
 
 ## 들어가며
 
-이 내용은 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2주차 5번째 강의에 있는 내용이다. 강의에서 Water Pouring Puzzle 알고리즘을 풀어보면서 그 동안 배웠던 내용을 정리하고 있는데, 나도 그에 대한 내용을 포스트로 정리해보면 좋을 것이라는 생각이 들어서 작성하게 되었다. [지난 번](https://sparkafka.github.io/de-note/18-scala-class)에는 class에 대한 내용을 작성하였는데, 이번에는 나머지 내용에 대해 정리를 해볼 것이다. 코드를 한 줄씩 분석해보며 관련 내용을 정리해보자. 나도 잘 모르기 때문에 자세한 내용은 강의를 직접 보시길 바란다.
+[Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 Water Pouring 문제를 정리하다가 LazyList에 대한 내용 정리가 필요할 것 같아서 따로 정리하게 되었다. LazyList에 대한 내용을 정리하려면 결국 Lazy Evaluation에 대한 내용을 정리해야 될 것 같아서 포스트를 따로 작성하게 되었다.   
+
+이 포스트는 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2-3, 2-4 강의를 정리한 내용이다.
 
 ## Water Pouring Puzzle
 
@@ -147,7 +149,9 @@ val moves =
   (for (from <- glasses; to <- glasses if from != to) yield Pour(from, to))
 ```
 
-이 부분에서는 가능한 모든 동작들을 moves라는 멤버 변수에 모두 저장한다. for-yield 문을 통해 각 동작들을 생성하고 ```++``` 메서드를 통해 결과들을 결합한다.
+이 부분에서는 가능한 모든 동작들을 moves라는 멤버 변수에 모두 저장한다. for-yield 문을 통해 각 동작들을 생성하고 ```++``` 메서드를 통해 결과들을 결합한다.   
+
+결과는 다음과 같이 생성된다.
 
 ```scala
 val problem = new Pouring(Vector(4, 9))
@@ -168,6 +172,7 @@ class PathOrigin(history: List[Move]) {
   def extend(move: Move) = new PathOrigin(move :: history)
   override def toString = (history.reverse mkString " ") + "--> " + endState
 }
+val initialPath = new PathOrigin(Nil)
 ```
 
 Path는 동작(Move)들의 Sequence이다. 즉 동작들을 연속적으로 수행하는 것이 Path이다. 이 강의에서는 가장 마지막 move가 path의 맨 앞으로 오도록 했다. 위 클래스에서, ```endState```는 path의 모든 동작들을 시킨 후의 결과 state이다. 그 동작들을 수행하는 메서드는 `trackState` 이다.   
@@ -192,10 +197,46 @@ Path는 동작(Move)들의 Sequence이다. 즉 동작들을 연속적으로 수�
 val endState: State = (history foldRight initialState) (_ change _)
 ```
 
-위와 같이 fold 메서드를 통해 간단히 구현이 가능하다.
+위와 같이 fold 메서드를 통해 간단히 구현이 가능하다.   
 
+아래 `extend` 메서드는 기존의 path에 새로운 동작을 추가한 새로운 path를 반환하는 메서드이다. 이 메서드로 경로를 확장할 수 있다. 그리고 toString 메서드를 구현하고 `initialPath`를 설정하였다.     
 
+그런데 path를 이런 식으로 구현하면 extend 할 때마다 endState의 계산을 history를 이용하여 처음부터 다시 해야 된다는 문제점이 생긴다. 이렇게 되면 경우의 수가 조금만 늘어나도 연산 양은 기하급수적으로 늘어나게 된다. 이럴 때는 현재 상태를 넣어서 현재 상태에서 새로운 move만 수행하여 새로운 path를 구하는 형식으로 구현할 수 있다.
 
+```scala
+class Path(history: List[Move], val endState: State) {
+  private def trackState(xs: List[Move]): State = xs match {
+    case Nil => initialState
+    case move :: xs1 => move change trackState(xs1) // foldRight
+  }
+
+  def extend(move: Move) = new Path(move :: history, move change endState)
+  override def toString = (history.reverse mkString " ") + "--> " + endState
+}
+
+val initialPath = new Path(Nil, initialState)
+```
+
+위와 같이 Path에 현재 endState를 넣고, extend를 수행하면 history 앞에 move를 추가하고, 입력 받았던 endState에 move를 수행한 최종 상태를 입력해 새로운 Path를 생성한다.
+
+## 경로 모음
+
+```scala
+def from(paths: Set[Path], explored: Set[State]): LazyList[Set[Path]] = {
+  if (paths.isEmpty) LazyList.empty
+  else {
+    val more = for {
+      path <- paths
+      next <- moves map path.extend
+      if !(explored contains next.endState)
+    } yield next
+    paths #:: from(more, explored ++ (more map (_.endState)))
+  }
+}
+val pathSets = from(Set(initialPath), Set(initialState))
+```
+
+이제 경로의 모든 경우의 수들을 계산하여 저장해 보자. from 메서드는 Path의 집합과 State들의 집합을 입력받아 Path의 집합의 LazyList를 반환하고 있다. LazyList는 immutable linked list로, 선언된 순간에 리스트가 생성되는 것이 아닌, 리스트 안의 요소들이 필요한 순간에 계산된다.
 ## 마치며
 
 이렇게 class 부터 보니까 머리 속이 정리가 되는 기분이다. 특이 scala3 에서의 변경점은 이번에 정리를 안 했으면 모를 뻔 했다. 근데 콜론을 이용하여 클래스를 만드는 것은 굳이 쓸까 싶긴 한데, 뭐 알아두면 나쁘진 않겠지. 좋은 시간이었다.
