@@ -3,15 +3,13 @@ layout: post
 title: "[Scala] Lazy Evaluation"
 excerpt: "Scala의 Lazy Evaluation을 알아보자."
 categories: ['Scala']
-last_modified_at: 2023-02-26
+last_modified_at: 2023-02-28
 published: True
 ---
 
 ## 들어가며
 
 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 Water Pouring 문제를 정리하다가 LazyList에 대한 내용 정리가 필요할 것 같았고, LazyList에 대한 내용을 정리하려면 결국 Lazy Evaluation에 대한 내용을 정리해야 될 것 같아서 포스트를 따로 작성하게 되었다.   
-
-이 포스트는 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2-3, 2-4 강의를 정리한 내용이다.
 
 ## Lazy Evaluation
 

@@ -3,13 +3,13 @@ layout: post
 title: "[Scala] Water Pouring 문제"
 excerpt: "Scala로 Water Pouring 퍼즐을 풀어보자."
 categories: ['Scala']
-last_modified_at: 2023-02-26
+last_modified_at: 2023-02-28
 published: True
 ---
 
 ## 들어가며
 
-이 내용은 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2주차 5번째 강의에 있는 내용이다. 강의에서 Water Pouring Puzzle 알고리즘을 풀어보면서 그 동안 배웠던 내용을 정리하고 있는데, 나도 그에 대한 내용을 포스트로 정리해보면 좋을 것이라는 생각이 들어서 작성하게 되었다. [지난 번](https://sparkafka.github.io/de-note/18-scala-class)에는 class에 대한 내용을 작성하였는데, 이번에는 나머지 내용에 대해 정리를 해볼 것이다. 코드를 한 줄씩 분석해보며 관련 내용을 정리해보자. 나도 잘 모르기 때문에 자세한 내용은 강의를 직접 보시길 바란다.
+내가 듣고 있는 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)에서 그동안 배웠던 내용의 총정리 개념으로 Water Pouring Puzzle을 풀어보는 수업이 있었다. 관련 내용을 정리하기 위해 포스트를 작성하게 되었다. 이미 지난 [class](https://sparkafka.github.io/de-note/18-scala-class/), [lazy evaluation](https://sparkafka.github.io/de-note/19-lazy-evaluation/)에 대한 포스트를 통해 class와 lazy evaluation에 대한 내용은 정리를 하였고, 다시 수업의 처음부터 정리하면서 그동안의 개념을 복습해 볼 예정이다.
 
 ## Water Pouring Puzzle
 

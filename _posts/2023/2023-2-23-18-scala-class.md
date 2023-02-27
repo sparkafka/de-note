@@ -3,13 +3,13 @@ layout: post
 title: "[Scala] Scala Class"
 excerpt: "Scala class에 대해 정리하자. Scala3 에서의 변경점을 알아보자."
 categories: ['Scala']
-last_modified_at: 2023-02-25
+last_modified_at: 2023-02-28
 published: True
 ---
 
 ## 들어가며
 
-원래는 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 2주차 5번째 강의의 Water Pouring Puzzle에 대한 내용을 정리하면서 그동안 배웠던 내용의 총정리 포스트를 작성하려고 했으나 하다보니 내용이 길어질 것 같아서 따로 포스트를 작성하게 되었다. Water Pouring Puzzle에 대한 내용은 나중에 작성을 할 예정이다. 먼저 class에 대한 내용을 정리해보도록 하겠다.
+원래는 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)의 Water Pouring Puzzle에 대한 내용을 정리하면서 그동안 배웠던 내용의 총정리 포스트를 작성하려고 했으나 하다보니 내용이 길어질 것 같아서 따로 포스트를 작성하게 되었다. Water Pouring Puzzle에 대한 내용은 나중에 작성을 할 예정이다. 먼저 class에 대한 내용을 정리해보도록 하겠다.
 
 ## Class
 
