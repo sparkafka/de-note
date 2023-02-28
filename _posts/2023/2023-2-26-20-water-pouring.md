@@ -9,7 +9,7 @@ published: True
 
 ## 들어가며
 
-내가 듣고 있는 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)에서 그동안 배웠던 내용의 총정리 개념으로 Water Pouring Puzzle을 풀어보는 수업이 있었다. 관련 내용을 정리하기 위해 포스트를 작성하게 되었다. 이미 지난 [class](https://sparkafka.github.io/de-note/18-scala-class/), [lazy evaluation](https://sparkafka.github.io/de-note/19-lazy-evaluation/)에 대한 포스트를 통해 class와 lazy evaluation에 대한 내용은 정리를 하였고, 다시 수업의 처음부터 정리하면서 그동안의 개념을 복습해 볼 예정이다.
+내가 듣고 있는 [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)에서 그동안 배웠던 내용의 총정리 개념으로 Water Pouring Puzzle을 풀어보는 수업이 있었다. 관련 내용을 정리하기 위해 포스트를 작성하게 되었다. 이미 지난 [class](https://sparkafka.github.io/de-note/18-scala-class/), [lazy evaluation](https://sparkafka.github.io/de-note/19-lazy-evaluation/)에 대한 포스트를 통해 class와 lazy evaluation에 대한 내용은 정리를 하였고, 다시 수업의 처음부터 정리하면서 그 동안의 개념을 복습해 볼 예정이다.
 
 ## Water Pouring Puzzle
 
@@ -41,7 +41,7 @@ class Pouring(capacity: Vector[Int]) {
 
 강의의 코드는 위와 같이 ```Vector[Int]``` 타입의 ```capacity``` 인자를 받으면서 Pouring 클래스를 선언하는 모습이다. 여기서 ```capacity```는 사용할 물통들의 용량을 뜻한다. 클래스에 대한 내용은 [이전 포스트](https://sparkafka.github.io/de-note/18-scala-class)를 참조 해주길 바란다.   
 
-다음 줄에서는 ```type``` 키워드를 통해 클래스 안에서 쓰일 타입을 선언하고 있다. ```Vector[Int]```를 ```State``` 타입으로 선언하고 있다. 이런 식으로 타입을 선언해 두면 어떤 때 이 타입을 사용하는지 명확하게 표현할 수 있다.   
+다음 줄에서는 ```type``` 키워드를 통해 클래스 안에서 쓰일 타입을 선언하고 있다. ```Vector[Int]```를 ```State``` 타입으로 선언하였다. 이런 식으로 타입을 선언해 두면 어떤 때 이 타입을 사용하는지 명확하게 표현할 수 있다.   
 
 다음 줄에서는 ```initialState```를 초기화 하고 있다. ```map``` 메서드를 통해 ```capacity```의 크기만큼의 0으로 된 ```Vector[Int]```를 만들고 있다.   
 이후에 나오는 코드들은 모드 ```Pouring``` 클래스 안에 들어있는 내용이다.
