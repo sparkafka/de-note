@@ -276,4 +276,4 @@ Water Pouring Puzzle을 통해 그동안 스칼라에 대해 배웠던 내용이
 
 ## Reference
 
-- [Coursera Scala 강의](https://www.coursera.org/learn/scala2-functional-program-design)
+- [Functional Program Design in Scala](https://www.coursera.org/learn/scala2-functional-program-design)
