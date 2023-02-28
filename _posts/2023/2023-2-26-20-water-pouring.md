@@ -43,8 +43,7 @@ class Pouring(capacity: Vector[Int]) {
 
 다음 줄에서는 ```type``` 키워드를 통해 클래스 안에서 쓰일 타입을 선언하고 있다. ```Vector[Int]```를 ```State``` 타입으로 선언하였다. 이런 식으로 타입을 선언해 두면 어떤 때 이 타입을 사용하는지 명확하게 표현할 수 있다.   
 
-다음 줄에서는 ```initialState```를 초기화 하고 있다. ```map``` 메서드를 통해 ```capacity```의 크기만큼의 0으로 된 ```Vector[Int]```를 만들고 있다.   
-이후에 나오는 코드들은 모드 ```Pouring``` 클래스 안에 들어있는 내용이다.
+다음 줄에서는 ```initialState```를 초기화 하고 있다. ```map``` 메서드를 통해 ```capacity```의 크기만큼의 0으로 된 ```Vector[Int]```를 만들고 있다. 이후에 나오는 코드들은 모두 ```Pouring``` 클래스 안에 들어있는 내용이다.
 
 ## Trait과 Case Class
 
