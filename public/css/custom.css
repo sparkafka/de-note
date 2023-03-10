@@ -15,3 +15,10 @@ h2 {
   display: block;
   color: #505050;
 }
+
+/* Add scrollbar in code block */
+.highlight pre {
+  word-wrap: normal;
+  overflow-x: auto;
+  white-space: pre;
+}
