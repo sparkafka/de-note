@@ -4,7 +4,7 @@ title: "[Scala] Kafka Produce, Consume 해보기"
 excerpt: "Scala3에서 Kakfa Produce, Consume을 테스트 해보자."
 categories: ['Kafka']
 last_modified_at: 2023-03-10
-published: False
+published: True
 ---
 
 ## 들어가며
